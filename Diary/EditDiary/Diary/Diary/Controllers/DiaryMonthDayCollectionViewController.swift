@@ -59,10 +59,7 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
         self.view.addSubview(yearLabel)
         
         yearLabel.userInteractionEnabled = true
-        
-        var mTapUpRecognizer = UITapGestureRecognizer(target: self, action: "backToHome")
-        mTapUpRecognizer.numberOfTapsRequired = 1
-        yearLabel.addGestureRecognizer(mTapUpRecognizer)
+
         
         //Add compose button
         
@@ -84,18 +81,10 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
         monthLabel.updateLabelColor(DiaryRed)
         monthLabel.userInteractionEnabled = true
         
-        var mmTapUpRecognizer = UITapGestureRecognizer(target: self, action: "backToYear")
-        mmTapUpRecognizer.numberOfTapsRequired = 1
-        monthLabel.addGestureRecognizer(mmTapUpRecognizer)
-        
-        
         self.view.addSubview(monthLabel)
         
         
-        var yearLayout = DiaryLayout()
-        
-        yearLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
-        self.collectionView?.setCollectionViewLayout(yearLayout, animated: false)
+        self.collectionView?.setCollectionViewLayout(DiaryLayout(), animated: false)
         
         self.collectionView!.frame = CGRect(x:0, y:0, width: collectionViewWidth, height: itemHeight)
         self.collectionView!.center = CGPoint(x: self.view.frame.size.width/2.0, y: self.view.frame.size.height/2.0)
@@ -136,7 +125,6 @@ extension DiaryMonthDayCollectionViewController: UICollectionViewDelegateFlowLay
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
         return diarys.count
     }
     
@@ -167,6 +155,12 @@ extension DiaryMonthDayCollectionViewController: UICollectionViewDelegateFlowLay
         
         self.navigationController!.pushViewController(dvc, animated: true)
         
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        diarys = fetchedResultsController.fetchedObjects as! [NSManagedObject]
+        collectionView?.reloadData()
+        self.collectionView?.setCollectionViewLayout(DiaryLayout(), animated: false)
     }
 
 }

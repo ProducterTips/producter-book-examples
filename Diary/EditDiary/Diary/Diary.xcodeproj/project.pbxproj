@@ -28,6 +28,7 @@
 		0AD3D7741B0B10F300FE3D8B /* DiaryComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3D7731B0B10F300FE3D8B /* DiaryComposeViewController.swift */; };
 		0AD3D7761B0B115700FE3D8B /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3D7751B0B115700FE3D8B /* Diary.swift */; };
 		0AD3D77A1B0B1B2600FE3D8B /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3D7791B0B1B2600FE3D8B /* DiaryViewController.swift */; };
+		6ADFE4EE1BD93A9B00AE6F90 /* DiaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 6ADFE4ED1BD93A9B00AE6F90 /* DiaryTemplate.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		0AD3D7731B0B10F300FE3D8B /* DiaryComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryComposeViewController.swift; sourceTree = "<group>"; };
 		0AD3D7751B0B115700FE3D8B /* Diary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		0AD3D7791B0B1B2600FE3D8B /* DiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
+		6ADFE4ED1BD93A9B00AE6F90 /* DiaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = DiaryTemplate.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		0AD3D7311B0AF77E00FE3D8B /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				6ADFE4ED1BD93A9B00AE6F90 /* DiaryTemplate.html */,
 				0AD3D7751B0B115700FE3D8B /* Diary.swift */,
 				0AD3D7691B0B0A4700FE3D8B /* DiaryHelper.swift */,
 				0AD3D7711B0B10E500FE3D8B /* DiaryLocationHelper.swift */,
@@ -273,6 +276,7 @@
 			files = (
 				0AD3D73D1B0AF77E00FE3D8B /* Main.storyboard in Resources */,
 				0AD3D7591B0AF7F600FE3D8B /* TpldKhangXiDictTrial.otf in Resources */,
+				6ADFE4EE1BD93A9B00AE6F90 /* DiaryTemplate.html in Resources */,
 				0AD3D7421B0AF77E00FE3D8B /* LaunchScreen.xib in Resources */,
 				0AD3D73F1B0AF77E00FE3D8B /* Images.xcassets in Resources */,
 				0AD3D75A1B0AF7F600FE3D8B /* Wyue-GutiFangsong-NC_deliverable.otf in Resources */,

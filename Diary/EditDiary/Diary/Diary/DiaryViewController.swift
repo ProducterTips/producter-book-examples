@@ -104,11 +104,28 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
     }
     
     func reloadWebView() {
-        let timeString = "\(numberToChinese(NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: diary.created_at)))年 \(numberToChineseWithUnit(NSCalendar.currentCalendar().component(NSCalendarUnit.Month, fromDate: diary.created_at)))月 \(numberToChineseWithUnit(NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: diary.created_at)))日"
+        let mainHTML = NSBundle.mainBundle().URLForResource("DiaryTemplate", withExtension:"html")
+        var contents: NSString = ""
+        
+        do {
+            contents = try NSString(contentsOfFile: mainHTML!.path!, encoding: NSUTF8StringEncoding)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: diary.created_at)
+        let month = NSCalendar.currentCalendar().component(NSCalendarUnit.Month, fromDate: diary.created_at)
+        let day = NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: diary.created_at)
+        
+        let timeString = "\(numberToChinese(year))年 \(numberToChineseWithUnit(month))月 \(numberToChineseWithUnit(day))日"
+        
+        contents = contents.stringByReplacingOccurrencesOfString("#timeString#", withString: timeString)
         
         //WebView method
         
         let newDiaryString = diary.content.stringByReplacingOccurrencesOfString("\n", withString: "<br>", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        contents = contents.stringByReplacingOccurrencesOfString("#newDiaryString#", withString: newDiaryString)
         
         var title = ""
         var contentWidthOffset = 140
@@ -124,31 +141,31 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
             }
         }
         
+        contents = contents.stringByReplacingOccurrencesOfString("#contentMargin#", withString: "\(contentMargin)")
+        
+        contents = contents.stringByReplacingOccurrencesOfString("#title#", withString: title)
+        
         let minWidth = self.view.frame.size.width - CGFloat(contentWidthOffset)
+        
+        contents = contents.stringByReplacingOccurrencesOfString("#minWidth#", withString: "\(minWidth)")
         
         let fontStr = defaultFont
         
-        let bodyPadding = 0
-        
-        let containerCSS = " padding:25px 10px 25px 25px; "
-
+        contents = contents.stringByReplacingOccurrencesOfString("#fontStr#", withString: fontStr)
         
         let titleMarginRight:CGFloat = 15
-
         
-        let headertags = "<!DOCTYPE html><html><meta charset='utf-8'><head><title></title><style>"
-        let bodyCSS = "body{padding:\(bodyPadding)px;} "
-        let allCSS = "* {-webkit-text-size-adjust: 100%; margin:0; font-family: '\(fontStr)'; -webkit-writing-mode: vertical-rl; letter-spacing: 3px;}"
-        let contentCSS = ".content { min-width: \(minWidth)px; margin-right: \(contentMargin)px;} .content p{ font-size: 12pt; line-height: 24pt;}"
-        let titleCSS = ".title {font-size: 12pt; font-weight:bold; line-height: 24pt; margin-right: \(titleMarginRight)px; padding-left: 20px;} "
-        let extraCSS = ".extra{ font-size:12pt; line-height: 24pt; margin-right:30px; }"
-        let stampCSS = ".stamp {width:24px; height:auto; position:fixed; bottom:20px;}"
+        contents = contents.stringByReplacingOccurrencesOfString("#titleMarginRight#", withString: "\(titleMarginRight)")
+        
+        if let location = diary.location {
+            contents = contents.stringByReplacingOccurrencesOfString("#location#", withString: location)
+        } else {
+            contents = contents.stringByReplacingOccurrencesOfString("#location#", withString: "")
+        }
         
         
-        let extraHTML = "<div class='extra'>\(diary.location)<br>\(timeString) </div>"
-        let contentHTML = "<div class='container'>\(title)<div class='content'><p>\(newDiaryString)</p></div>"
+        webview.loadHTMLString(contents as String, baseURL: nil)
         
-        webview.loadHTMLString("\(headertags)\(bodyCSS) \(allCSS) \(contentCSS) \(titleCSS) \(extraCSS) .container { \(containerCSS) } \(stampCSS) </style></head> <body> \(contentHTML) \(extraHTML)</body></html>", baseURL: nil)
     }
     
     func showButtons() {

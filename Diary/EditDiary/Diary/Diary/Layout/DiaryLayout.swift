@@ -15,5 +15,6 @@ class DiaryLayout: UICollectionViewFlowLayout {
         self.itemSize = itemSize
         self.minimumInteritemSpacing = 0.0
         self.minimumLineSpacing = 0
+        scrollDirection = UICollectionViewScrollDirection.Horizontal
     }
 }

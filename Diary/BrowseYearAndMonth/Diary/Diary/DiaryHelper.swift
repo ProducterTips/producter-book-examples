@@ -30,6 +30,29 @@ extension Diary {
     }
 }
 
+extension UIWebView {
+    
+    func captureView() -> UIImage{
+        // tempframe to reset view size after image was created
+        let tmpFrame = self.frame
+        // set new Frame
+        var aFrame = self.frame
+        aFrame.size.width = self.sizeThatFits(UIScreen.mainScreen().bounds.size).width
+        self.frame = aFrame
+        // do image magic
+        UIGraphicsBeginImageContextWithOptions(self.sizeThatFits(UIScreen.mainScreen().bounds.size), false, UIScreen.mainScreen().scale)
+        let resizedContext = UIGraphicsGetCurrentContext()
+        self.layer.renderInContext(resizedContext!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        // reset Frame of view to origin
+        self.frame = tmpFrame
+        
+        return image
+    }
+}
+
+
 
 func diaryButtonWith(text text: String, fontSize: CGFloat, width: CGFloat, normalImageName: String, highlightedImageName: String) -> UIButton {
     
@@ -63,6 +86,7 @@ func diaryButtonWith(text text: String, fontSize: CGFloat, width: CGFloat, norma
     
     return button
 }
+
 
 
 

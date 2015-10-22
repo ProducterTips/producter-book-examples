@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
-let reuseIdentifier = "Cell"
+import CoreData
 
 class DiaryMonthDayCollectionViewController: UICollectionViewController {
+    
+    var diarys = [NSManagedObject]()
     
     var month:Int!
     
@@ -21,15 +22,35 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
     var composeButton:UIButton!
     
     var monthLabel:DiaryLabel!
+    
+    var fetchedResultsController : NSFetchedResultsController!
 
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
+        
+        do {
+            let fetchRequest = NSFetchRequest(entityName:"Diary")
+            
+            print("year = \(year) AND month = \(month)")
+            
+            fetchRequest.predicate = NSPredicate(format: "year = \(year) AND month = \(month)")
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: true)]
+            
+            fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                managedObjectContext: managedContext, sectionNameKeyPath: "year",
+                cacheName: nil)
+            
+            fetchedResultsController.delegate = self
+            try fetchedResultsController.performFetch()
+            
+            diarys = fetchedResultsController.fetchedObjects as! [NSManagedObject]
+        } catch _ {
+            
+        }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        print("This month have \(diarys.count) \n", terminator: "")
         
         // Register cell classes
         yearLabel = DiaryLabel(fontname: "TpldKhangXiDictTrial", labelText: "\(numberToChinese(year))年", fontSize: 20.0,lineHeight: 5.0)
@@ -64,10 +85,6 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
         monthLabel.updateLabelColor(DiaryRed)
         monthLabel.userInteractionEnabled = true
         
-        let mmTapUpRecognizer = UITapGestureRecognizer(target: self, action: "backToYear")
-        mmTapUpRecognizer.numberOfTapsRequired = 1
-        monthLabel.addGestureRecognizer(mmTapUpRecognizer)
-        
         
         self.view.addSubview(monthLabel)
         
@@ -98,44 +115,52 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //#warning Incomplete method implementation -- Return the number of sections
-        return 1
-    }
-
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return 1
-    }
-
-
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         let leftRightMagrin = (collectionViewWidth - itemWidth)/2
         return UIEdgeInsetsMake(0, leftRightMagrin, 0, leftRightMagrin);
     }
 
+}
+
+extension DiaryMonthDayCollectionViewController: UICollectionViewDelegateFlowLayout , NSFetchedResultsControllerDelegate {
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        //#warning Incomplete method implementation -- Return the number of sections
+        return 1
+    }
+    
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //#warning Incomplete method implementation -- Return the number of items in the section
+        return diarys.count
+    }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        // Configure the cell
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DiaryCollectionViewCell", forIndexPath: indexPath) as! DiaryCollectionViewCell
-        cell.labelText = "一十一 日"
-        cell.textInt = 5
+        let diary = fetchedResultsController.objectAtIndexPath(indexPath) as! Diary
         // Configure the cell
         
+        if let title = diary.title {
+            cell.labelText = title
+        }else{
+            cell.labelText = "\(numberToChineseWithUnit(NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: diary.created_at))) 日"
+        }
+        
         return cell
+    }
+
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        diarys = fetchedResultsController.fetchedObjects as! [NSManagedObject]
+        collectionView?.collectionViewLayout.invalidateLayout()
+        collectionView?.reloadData()
     }
 
 }

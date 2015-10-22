@@ -85,15 +85,11 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
         monthLabel.updateLabelColor(DiaryRed)
         monthLabel.userInteractionEnabled = true
         
-        var mmTapUpRecognizer = UITapGestureRecognizer(target: self, action: "backToYear")
-        mmTapUpRecognizer.numberOfTapsRequired = 1
-        monthLabel.addGestureRecognizer(mmTapUpRecognizer)
-        
         
         self.view.addSubview(monthLabel)
         
         
-        var yearLayout = DiaryLayout()
+        let yearLayout = DiaryLayout()
         
         yearLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         self.collectionView?.setCollectionViewLayout(yearLayout, animated: false)
@@ -118,8 +114,6 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         let leftRightMagrin = (collectionViewWidth - itemWidth)/2
@@ -168,6 +162,12 @@ extension DiaryMonthDayCollectionViewController: UICollectionViewDelegateFlowLay
         
         self.navigationController!.pushViewController(dvc, animated: true)
         
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        diarys = fetchedResultsController.fetchedObjects as! [NSManagedObject]
+        collectionView?.collectionViewLayout.invalidateLayout()
+        collectionView?.reloadData()
     }
 
 }

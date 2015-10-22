@@ -62,7 +62,7 @@ class DiaryYearCollectionViewController: UICollectionViewController {
         
         yearLabel.userInteractionEnabled = true
         
-        var mTapUpRecognizer = UITapGestureRecognizer(target: self, action: "backToHome")
+        let mTapUpRecognizer = UITapGestureRecognizer(target: self, action: "backToHome")
         mTapUpRecognizer.numberOfTapsRequired = 1
         yearLabel.addGestureRecognizer(mTapUpRecognizer)
         
@@ -78,7 +78,7 @@ class DiaryYearCollectionViewController: UICollectionViewController {
         self.view.addSubview(composeButton)
 
 
-        var yearLayout = DiaryLayout()
+        let yearLayout = DiaryLayout()
         
         yearLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         self.collectionView?.setCollectionViewLayout(yearLayout, animated: false)

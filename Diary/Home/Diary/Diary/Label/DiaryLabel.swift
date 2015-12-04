@@ -81,7 +81,7 @@ class DiaryLabel: UILabel {
     func updateText(labelText: String) {
         
         let labelSize = sizeHeightWithText(labelText,
-            fontSize: self.font.pointSize,
+            fontSize: (textAttributes["NSFont"] as! UIFont).pointSize,
             textAttributes: textAttributes)
         
         self.frame = CGRectMake(0, 0, labelSize.width,

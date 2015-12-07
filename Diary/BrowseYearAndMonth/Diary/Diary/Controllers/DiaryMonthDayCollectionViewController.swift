@@ -46,8 +46,8 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
             try fetchedResultsController.performFetch()
             
             diarys = fetchedResultsController.fetchedObjects as! [NSManagedObject]
-        } catch _ {
-            
+        } catch let error as NSError  {
+            debugPrint(error)
         }
 
         print("This month have \(diarys.count) \n", terminator: "")

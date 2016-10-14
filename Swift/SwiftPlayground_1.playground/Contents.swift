@@ -38,7 +38,7 @@ class NumberParser {
 // 类的实例化
 
 let convertor = NumberParser()
-let zeroString = convertor.singleNumberToChinese("0")
+let zeroString = convertor.singleNumberToChinese(number: "0")
 print(zeroString)
 
 // 类的继承
@@ -49,7 +49,7 @@ class NumbersParser: NumberParser {
         let numbers = String(number).characters
         var finalString = ""
         for singleNumber in numbers{
-            let string = singleNumberToChinese(singleNumber)
+            let string = singleNumberToChinese(number: singleNumber)
             finalString = "\(finalString)\(string)"
         }
         return finalString
@@ -58,5 +58,5 @@ class NumbersParser: NumberParser {
 }
 
 let conventor = NumbersParser()
-let yearString = conventor.numberToChinese(2015)
+let yearString = conventor.numberToChinese(number: 2015)
 print(yearString)

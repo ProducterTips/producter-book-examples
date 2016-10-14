@@ -43,7 +43,7 @@ class NumbersParser: NumberParser {
         let numbers = String(number).characters
         var finalString = ""
         for singleNumber in numbers{
-            let string = singleNumberToChinese(singleNumber)
+            let string = singleNumberToChinese(number: singleNumber)
             finalString = "\(finalString)\(string)"
         }
         return finalString
@@ -51,7 +51,7 @@ class NumbersParser: NumberParser {
     
 }
 
-let numbersString = NumbersParser.sharedInstance.numberToChinese(2015)
+let numbersString = NumbersParser.sharedInstance.numberToChinese(number: 2015)
 
 print(numbersString)
 
@@ -61,17 +61,17 @@ class YearParser: NumbersParser {
     static let sharedYearParserInstance = YearParser()
     
     override func numberToChinese(number:Int) -> String {
-        let numbersString = super.numberToChinese(number)
+        let numbersString = super.numberToChinese(number: number)
         return "\(numbersString) 年"
     }
     
 }
 
-let yearString = YearParser.sharedYearParserInstance.numberToChinese(2015)
+let yearString = YearParser.sharedYearParserInstance.numberToChinese(number: 2015)
 
 print(yearString)
 
-let numbersString2 = NumbersParser.sharedInstance.numberToChinese(2015)
+let numbersString2 = NumbersParser.sharedInstance.numberToChinese(number: 2015)
 
 print(numbersString2)
 

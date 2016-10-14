@@ -8,9 +8,9 @@ enum China: Int {
     
     var description: String {
         switch self {
-            case Guangzhou:
+            case .Guangzhou:
                 return "广州"
-            case Beijing:
+            case .Beijing:
                 return "北京"
         }
     }

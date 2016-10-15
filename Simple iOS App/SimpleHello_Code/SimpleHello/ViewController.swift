@@ -29,6 +29,15 @@ class ViewController: UIViewController {
         askButton.addTarget(self, action: #selector(ViewController.eatOrNot),
             for: UIControlEvents.touchUpInside)
         
+        UIView.animate(withDuration: 1.0, delay: 0, options:
+            UIViewAnimationOptions.curveEaseInOut, animations: {
+                
+                self.view.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+                // 可以修改多个属性
+                
+            }, completion: nil)
+
+        
         //当点击这个 Button 的时候，执行 self （即 ViewController 这个类） 里面的 eatOrNot 方法
         
         askButton.frame = CGRect(

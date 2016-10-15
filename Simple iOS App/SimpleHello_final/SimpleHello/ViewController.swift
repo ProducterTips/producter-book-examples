@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        self.view.backgroundColor = UIColor.lightGray
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -22,10 +23,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func eatOrNot(sender: AnyObject) {
+    @IBAction func eatOrNot(_ sender: AnyObject) {
         let message = UIAlertView(title: "Hi", message: "我只吃电，不吃饭", delegate: nil, cancelButtonTitle: nil, otherButtonTitles: "好的")
         message.show()
     }
 
+    
 }
 

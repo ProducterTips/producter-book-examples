@@ -8,17 +8,17 @@ let fontSize: CGFloat = 22.0
 
 func sizeHeightWithText(labelText: NSString,
     fontSize: CGFloat,
-    textAttributes: [String : AnyObject]) -> CGRect {
+    textAttributes: [String : Any]) -> CGRect {
         
-        return labelText.boundingRectWithSize(
-            CGSizeMake(fontSize, 480),
-            options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+    return labelText.boundingRect(
+        with: CGSize(width:fontSize, height:480),
+            options: NSStringDrawingOptions.usesLineFragmentOrigin,
             attributes: textAttributes, context: nil)
 }
 
 // 引用 UIKit 这样才能找得到 UILabel
 
-var newLabel = UILabel(frame: CGRectMake(0, 0, 300, 100))
+var newLabel = UILabel(frame: CGRect(x:0, y:0, width:300, height:100))
 
 // 创建新的 UILabel，并且设置长宽为 100 和 300
 
@@ -32,14 +32,14 @@ newLabel.sizeToFit()
 
 newLabel
 
-let font = UIFont.systemFontOfSize(fontSize)
+let font = UIFont.systemFont(ofSize: fontSize)
 
-var newLabelTwo = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 100))
+var newLabelTwo = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 200))
 
-newLabelTwo.text = "竖排文字"
+newLabelTwo.text = "一闪一闪亮晶晶"
 // 设置带有字体样式的文字
 
-newLabelTwo.lineBreakMode = NSLineBreakMode.ByCharWrapping
+newLabelTwo.lineBreakMode = NSLineBreakMode.byCharWrapping
 // 以字符为换行标准
 
 newLabelTwo.numberOfLines = 0

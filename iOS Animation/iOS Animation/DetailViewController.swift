@@ -23,24 +23,24 @@ class DetailViewController: UIViewController {
     func configureView() {
         
         // Update the user interface for the detail item.
-        if let detailItem = self.detailItem, animation = AnimationType(rawValue: detailItem.integerValue) {
+        if let detailItem = self.detailItem, let animation = AnimationType(rawValue: detailItem.intValue) {
             
             switch animation {
-            case AnimationType.SizeCode:
-                codeView.hidden = false
+            case AnimationType.sizeCode:
+                codeView.isHidden = false
 
-                UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                UIView.animate(withDuration: 1.0, delay: 0, options: UIViewAnimationOptions(), animations: {
                     
-                    self.codeView.frame = CGRectMake(self.codeView.frame.origin.x,self.codeView.frame.origin.y , 200, 200)
+                    self.codeView.frame = CGRect(x: self.codeView.frame.origin.x,y: self.codeView.frame.origin.y , width: 200, height: 200)
                     self.codeView.center = self.view.center
                     
                 }, completion: nil)
 
-            case AnimationType.SizeAutoLayout:
+            case AnimationType.sizeAutoLayout:
                 
-                autoLayoutView.hidden = false
+                autoLayoutView.isHidden = false
                 
-                UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                UIView.animate(withDuration: 1.0, delay: 0, options: UIViewAnimationOptions(), animations: {
                     
                     self.autoLayoutViewWidthConstraint.constant = 200
                     
@@ -58,7 +58,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        autoLayoutView.hidden = true
+        autoLayoutView.isHidden = true
         
         codeView.backgroundColor = autoLayoutView.backgroundColor
         
@@ -66,11 +66,11 @@ class DetailViewController: UIViewController {
         
         codeView.center = view.center
         
-        codeView.hidden = true
+        codeView.isHidden = true
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.configureView()
     }

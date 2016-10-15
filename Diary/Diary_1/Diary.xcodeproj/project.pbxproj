@@ -24,6 +24,8 @@
 		0A5EA7401DB2B0F500B4665B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A5EA7421DB2B0F500B4665B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A5EA7481DB2B2E200B4665B /* DiaryLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryLabel.swift; sourceTree = "<group>"; };
+		0A5EA74A1DB2B4BA00B4665B /* TpldKhangXiDictTrial.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TpldKhangXiDictTrial.otf; sourceTree = "<group>"; };
+		0A5EA74B1DB2B4BA00B4665B /* Wyue-GutiFangsong-NC_deliverable.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wyue-GutiFangsong-NC_deliverable.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,8 @@
 				0A5EA7481DB2B2E200B4665B /* DiaryLabel.swift */,
 				0A5EA7381DB2B0F500B4665B /* ViewController.swift */,
 				0A5EA73A1DB2B0F500B4665B /* Main.storyboard */,
+				0A5EA74A1DB2B4BA00B4665B /* TpldKhangXiDictTrial.otf */,
+				0A5EA74B1DB2B4BA00B4665B /* Wyue-GutiFangsong-NC_deliverable.otf */,
 				0A5EA73D1DB2B0F500B4665B /* Assets.xcassets */,
 				0A5EA73F1DB2B0F500B4665B /* LaunchScreen.storyboard */,
 				0A5EA7421DB2B0F500B4665B /* Info.plist */,

@@ -17,17 +17,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let askButton = UIButton(type: UIButtonType.System)
+        let askButton = UIButton(type: UIButtonType.system)
         
         //创建一个 UIButton
         
         askButton.setTitle("你吃了吗",
-            forState: UIControlState.Normal)
+            for: UIControlState())
         
         //创建一个 设置默认状态下的文字，显示为 你吃了吗
         
-        askButton.addTarget(self, action: "eatOrNot",
-            forControlEvents: UIControlEvents.TouchUpInside)
+        askButton.addTarget(self, action: #selector(ViewController.eatOrNot),
+            for: UIControlEvents.touchUpInside)
         
         //当点击这个 Button 的时候，执行 self （即 ViewController 这个类） 里面的 eatOrNot 方法
         

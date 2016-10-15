@@ -1,6 +1,6 @@
 //
-//  SimpleHelloTests.swift
-//  SimpleHelloTests
+//  MeowTests.swift
+//  MeowTests
 //
 //  Created by kevinzhow on 15/6/10.
 //  Copyright (c) 2015年 kevinzhow. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class SimpleHelloTests: XCTestCase {
+class MeowTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

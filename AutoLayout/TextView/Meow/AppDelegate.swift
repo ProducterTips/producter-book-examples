@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  SimpleHello
+//  Meow
 //
 //  Created by kevinzhow on 15/6/10.
 //  Copyright (c) 2015年 kevinzhow. All rights reserved.

@@ -7,46 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AA102541B2883F500C0B299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA102531B2883F500C0B299 /* AppDelegate.swift */; };
-		0AA102561B2883F500C0B299 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA102551B2883F500C0B299 /* ViewController.swift */; };
-		0AA102591B2883F500C0B299 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AA102571B2883F500C0B299 /* Main.storyboard */; };
-		0AA1025B1B2883F500C0B299 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA1025A1B2883F500C0B299 /* Images.xcassets */; };
-		0AA1025E1B2883F500C0B299 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA1025C1B2883F500C0B299 /* LaunchScreen.xib */; };
-		0AA1026A1B2883F500C0B299 /* SimpleHelloTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA102691B2883F500C0B299 /* SimpleHelloTests.swift */; };
+		0AA102261B2866B500C0B299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA102251B2866B500C0B299 /* AppDelegate.swift */; };
+		0AA102281B2866B500C0B299 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA102271B2866B500C0B299 /* ViewController.swift */; };
+		0AA1022B1B2866B500C0B299 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AA102291B2866B500C0B299 /* Main.storyboard */; };
+		0AA1022D1B2866B500C0B299 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA1022C1B2866B500C0B299 /* Images.xcassets */; };
+		0AA102301B2866B500C0B299 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AA1022E1B2866B500C0B299 /* LaunchScreen.xib */; };
+		0AA1023C1B2866B500C0B299 /* MeowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA1023B1B2866B500C0B299 /* MeowTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0AA102641B2883F500C0B299 /* PBXContainerItemProxy */ = {
+		0AA102361B2866B500C0B299 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 0AA102461B2883F500C0B299 /* Project object */;
+			containerPortal = 0AA102181B2866B500C0B299 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0AA1024D1B2883F500C0B299;
-			remoteInfo = SimpleHello;
+			remoteGlobalIDString = 0AA1021F1B2866B500C0B299;
+			remoteInfo = Meow;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0AA1024E1B2883F500C0B299 /* SimpleHello.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleHello.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0AA102521B2883F500C0B299 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AA102531B2883F500C0B299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0AA102551B2883F500C0B299 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0AA102581B2883F500C0B299 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0AA1025A1B2883F500C0B299 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0AA1025D1B2883F500C0B299 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		0AA102631B2883F500C0B299 /* SimpleHelloTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleHelloTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0AA102681B2883F500C0B299 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AA102691B2883F500C0B299 /* SimpleHelloTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHelloTests.swift; sourceTree = "<group>"; };
+		0AA102201B2866B500C0B299 /* Meow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Meow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AA102241B2866B500C0B299 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AA102251B2866B500C0B299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0AA102271B2866B500C0B299 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0AA1022A1B2866B500C0B299 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0AA1022C1B2866B500C0B299 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0AA1022F1B2866B500C0B299 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		0AA102351B2866B500C0B299 /* MeowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AA1023A1B2866B500C0B299 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AA1023B1B2866B500C0B299 /* MeowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeowTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0AA1024B1B2883F500C0B299 /* Frameworks */ = {
+		0AA1021D1B2866B500C0B299 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0AA102601B2883F500C0B299 /* Frameworks */ = {
+		0AA102321B2866B500C0B299 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -56,58 +56,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0AA102451B2883F500C0B299 = {
+		0AA102171B2866B500C0B299 = {
 			isa = PBXGroup;
 			children = (
-				0AA102501B2883F500C0B299 /* SimpleHello */,
-				0AA102661B2883F500C0B299 /* SimpleHelloTests */,
-				0AA1024F1B2883F500C0B299 /* Products */,
+				0AA102221B2866B500C0B299 /* Meow */,
+				0AA102381B2866B500C0B299 /* MeowTests */,
+				0AA102211B2866B500C0B299 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		0AA1024F1B2883F500C0B299 /* Products */ = {
+		0AA102211B2866B500C0B299 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0AA1024E1B2883F500C0B299 /* SimpleHello.app */,
-				0AA102631B2883F500C0B299 /* SimpleHelloTests.xctest */,
+				0AA102201B2866B500C0B299 /* Meow.app */,
+				0AA102351B2866B500C0B299 /* MeowTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0AA102501B2883F500C0B299 /* SimpleHello */ = {
+		0AA102221B2866B500C0B299 /* Meow */ = {
 			isa = PBXGroup;
 			children = (
-				0AA102531B2883F500C0B299 /* AppDelegate.swift */,
-				0AA102551B2883F500C0B299 /* ViewController.swift */,
-				0AA102571B2883F500C0B299 /* Main.storyboard */,
-				0AA1025A1B2883F500C0B299 /* Images.xcassets */,
-				0AA1025C1B2883F500C0B299 /* LaunchScreen.xib */,
-				0AA102511B2883F500C0B299 /* Supporting Files */,
+				0AA102251B2866B500C0B299 /* AppDelegate.swift */,
+				0AA102271B2866B500C0B299 /* ViewController.swift */,
+				0AA102291B2866B500C0B299 /* Main.storyboard */,
+				0AA1022C1B2866B500C0B299 /* Images.xcassets */,
+				0AA1022E1B2866B500C0B299 /* LaunchScreen.xib */,
+				0AA102231B2866B500C0B299 /* Supporting Files */,
 			);
-			path = SimpleHello;
+			path = Meow;
 			sourceTree = "<group>";
 		};
-		0AA102511B2883F500C0B299 /* Supporting Files */ = {
+		0AA102231B2866B500C0B299 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0AA102521B2883F500C0B299 /* Info.plist */,
+				0AA102241B2866B500C0B299 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0AA102661B2883F500C0B299 /* SimpleHelloTests */ = {
+		0AA102381B2866B500C0B299 /* MeowTests */ = {
 			isa = PBXGroup;
 			children = (
-				0AA102691B2883F500C0B299 /* SimpleHelloTests.swift */,
-				0AA102671B2883F500C0B299 /* Supporting Files */,
+				0AA1023B1B2866B500C0B299 /* MeowTests.swift */,
+				0AA102391B2866B500C0B299 /* Supporting Files */,
 			);
-			path = SimpleHelloTests;
+			path = MeowTests;
 			sourceTree = "<group>";
 		};
-		0AA102671B2883F500C0B299 /* Supporting Files */ = {
+		0AA102391B2866B500C0B299 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0AA102681B2883F500C0B299 /* Info.plist */,
+				0AA1023A1B2866B500C0B299 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -115,63 +115,63 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0AA1024D1B2883F500C0B299 /* SimpleHello */ = {
+		0AA1021F1B2866B500C0B299 /* Meow */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0AA1026D1B2883F500C0B299 /* Build configuration list for PBXNativeTarget "SimpleHello" */;
+			buildConfigurationList = 0AA1023F1B2866B500C0B299 /* Build configuration list for PBXNativeTarget "Meow" */;
 			buildPhases = (
-				0AA1024A1B2883F500C0B299 /* Sources */,
-				0AA1024B1B2883F500C0B299 /* Frameworks */,
-				0AA1024C1B2883F500C0B299 /* Resources */,
+				0AA1021C1B2866B500C0B299 /* Sources */,
+				0AA1021D1B2866B500C0B299 /* Frameworks */,
+				0AA1021E1B2866B500C0B299 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SimpleHello;
-			productName = SimpleHello;
-			productReference = 0AA1024E1B2883F500C0B299 /* SimpleHello.app */;
+			name = Meow;
+			productName = Meow;
+			productReference = 0AA102201B2866B500C0B299 /* Meow.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0AA102621B2883F500C0B299 /* SimpleHelloTests */ = {
+		0AA102341B2866B500C0B299 /* MeowTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0AA102701B2883F500C0B299 /* Build configuration list for PBXNativeTarget "SimpleHelloTests" */;
+			buildConfigurationList = 0AA102421B2866B500C0B299 /* Build configuration list for PBXNativeTarget "MeowTests" */;
 			buildPhases = (
-				0AA1025F1B2883F500C0B299 /* Sources */,
-				0AA102601B2883F500C0B299 /* Frameworks */,
-				0AA102611B2883F500C0B299 /* Resources */,
+				0AA102311B2866B500C0B299 /* Sources */,
+				0AA102321B2866B500C0B299 /* Frameworks */,
+				0AA102331B2866B500C0B299 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0AA102651B2883F500C0B299 /* PBXTargetDependency */,
+				0AA102371B2866B500C0B299 /* PBXTargetDependency */,
 			);
-			name = SimpleHelloTests;
-			productName = SimpleHelloTests;
-			productReference = 0AA102631B2883F500C0B299 /* SimpleHelloTests.xctest */;
+			name = MeowTests;
+			productName = MeowTests;
+			productReference = 0AA102351B2866B500C0B299 /* MeowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		0AA102461B2883F500C0B299 /* Project object */ = {
+		0AA102181B2866B500C0B299 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = kevinzhow;
 				TargetAttributes = {
-					0AA1024D1B2883F500C0B299 = {
+					0AA1021F1B2866B500C0B299 = {
 						CreatedOnToolsVersion = 6.3.2;
 						LastSwiftMigration = 0800;
 					};
-					0AA102621B2883F500C0B299 = {
+					0AA102341B2866B500C0B299 = {
 						CreatedOnToolsVersion = 6.3.2;
 						LastSwiftMigration = 0800;
-						TestTargetID = 0AA1024D1B2883F500C0B299;
+						TestTargetID = 0AA1021F1B2866B500C0B299;
 					};
 				};
 			};
-			buildConfigurationList = 0AA102491B2883F500C0B299 /* Build configuration list for PBXProject "SimpleHello" */;
+			buildConfigurationList = 0AA1021B1B2866B500C0B299 /* Build configuration list for PBXProject "Meow" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -179,29 +179,29 @@
 				en,
 				Base,
 			);
-			mainGroup = 0AA102451B2883F500C0B299;
-			productRefGroup = 0AA1024F1B2883F500C0B299 /* Products */;
+			mainGroup = 0AA102171B2866B500C0B299;
+			productRefGroup = 0AA102211B2866B500C0B299 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0AA1024D1B2883F500C0B299 /* SimpleHello */,
-				0AA102621B2883F500C0B299 /* SimpleHelloTests */,
+				0AA1021F1B2866B500C0B299 /* Meow */,
+				0AA102341B2866B500C0B299 /* MeowTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0AA1024C1B2883F500C0B299 /* Resources */ = {
+		0AA1021E1B2866B500C0B299 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AA102591B2883F500C0B299 /* Main.storyboard in Resources */,
-				0AA1025E1B2883F500C0B299 /* LaunchScreen.xib in Resources */,
-				0AA1025B1B2883F500C0B299 /* Images.xcassets in Resources */,
+				0AA1022B1B2866B500C0B299 /* Main.storyboard in Resources */,
+				0AA102301B2866B500C0B299 /* LaunchScreen.xib in Resources */,
+				0AA1022D1B2866B500C0B299 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0AA102611B2883F500C0B299 /* Resources */ = {
+		0AA102331B2866B500C0B299 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -211,46 +211,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0AA1024A1B2883F500C0B299 /* Sources */ = {
+		0AA1021C1B2866B500C0B299 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AA102561B2883F500C0B299 /* ViewController.swift in Sources */,
-				0AA102541B2883F500C0B299 /* AppDelegate.swift in Sources */,
+				0AA102281B2866B500C0B299 /* ViewController.swift in Sources */,
+				0AA102261B2866B500C0B299 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0AA1025F1B2883F500C0B299 /* Sources */ = {
+		0AA102311B2866B500C0B299 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AA1026A1B2883F500C0B299 /* SimpleHelloTests.swift in Sources */,
+				0AA1023C1B2866B500C0B299 /* MeowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0AA102651B2883F500C0B299 /* PBXTargetDependency */ = {
+		0AA102371B2866B500C0B299 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0AA1024D1B2883F500C0B299 /* SimpleHello */;
-			targetProxy = 0AA102641B2883F500C0B299 /* PBXContainerItemProxy */;
+			target = 0AA1021F1B2866B500C0B299 /* Meow */;
+			targetProxy = 0AA102361B2866B500C0B299 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0AA102571B2883F500C0B299 /* Main.storyboard */ = {
+		0AA102291B2866B500C0B299 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0AA102581B2883F500C0B299 /* Base */,
+				0AA1022A1B2866B500C0B299 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		0AA1025C1B2883F500C0B299 /* LaunchScreen.xib */ = {
+		0AA1022E1B2866B500C0B299 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0AA1025D1B2883F500C0B299 /* Base */,
+				0AA1022F1B2866B500C0B299 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -258,7 +258,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		0AA1026B1B2883F500C0B299 /* Debug */ = {
+		0AA1023D1B2866B500C0B299 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -271,14 +271,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -303,7 +306,7 @@
 			};
 			name = Debug;
 		};
-		0AA1026C1B2883F500C0B299 /* Release */ = {
+		0AA1023E1B2866B500C0B299 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -316,8 +319,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -336,34 +341,37 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		0AA1026E1B2883F500C0B299 /* Debug */ = {
+		0AA102401B2866B500C0B299 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SimpleHello/Info.plist;
+				INFOPLIST_FILE = Meow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kevinzhow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		0AA1026F1B2883F500C0B299 /* Release */ = {
+		0AA102411B2866B500C0B299 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = SimpleHello/Info.plist;
+				INFOPLIST_FILE = Meow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kevinzhow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
-		0AA102711B2883F500C0B299 /* Debug */ = {
+		0AA102431B2866B500C0B299 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -375,15 +383,16 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SimpleHelloTests/Info.plist;
+				INFOPLIST_FILE = MeowTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kevinzhow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleHello.app/SimpleHello";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Meow.app/Meow";
 			};
 			name = Debug;
 		};
-		0AA102721B2883F500C0B299 /* Release */ = {
+		0AA102441B2866B500C0B299 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -391,45 +400,46 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SimpleHelloTests/Info.plist;
+				INFOPLIST_FILE = MeowTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "kevinzhow.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SimpleHello.app/SimpleHello";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Meow.app/Meow";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0AA102491B2883F500C0B299 /* Build configuration list for PBXProject "SimpleHello" */ = {
+		0AA1021B1B2866B500C0B299 /* Build configuration list for PBXProject "Meow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0AA1026B1B2883F500C0B299 /* Debug */,
-				0AA1026C1B2883F500C0B299 /* Release */,
+				0AA1023D1B2866B500C0B299 /* Debug */,
+				0AA1023E1B2866B500C0B299 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0AA1026D1B2883F500C0B299 /* Build configuration list for PBXNativeTarget "SimpleHello" */ = {
+		0AA1023F1B2866B500C0B299 /* Build configuration list for PBXNativeTarget "Meow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0AA1026E1B2883F500C0B299 /* Debug */,
-				0AA1026F1B2883F500C0B299 /* Release */,
+				0AA102401B2866B500C0B299 /* Debug */,
+				0AA102411B2866B500C0B299 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0AA102701B2883F500C0B299 /* Build configuration list for PBXNativeTarget "SimpleHelloTests" */ = {
+		0AA102421B2866B500C0B299 /* Build configuration list for PBXNativeTarget "MeowTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0AA102711B2883F500C0B299 /* Debug */,
-				0AA102721B2883F500C0B299 /* Release */,
+				0AA102431B2866B500C0B299 /* Debug */,
+				0AA102441B2866B500C0B299 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 0AA102461B2883F500C0B299 /* Project object */;
+	rootObject = 0AA102181B2866B500C0B299 /* Project object */;
 }

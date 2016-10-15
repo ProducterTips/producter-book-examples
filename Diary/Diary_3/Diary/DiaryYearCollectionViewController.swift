@@ -18,6 +18,7 @@ class DiaryYearCollectionViewController: UICollectionViewController {
         
         layout.scrollDirection = UICollectionViewScrollDirection.horizontal
         self.collectionView?.setCollectionViewLayout(layout, animated: false)
+
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

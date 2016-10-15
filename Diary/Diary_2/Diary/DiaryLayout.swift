@@ -17,7 +17,7 @@ class DiaryLayout: UICollectionViewFlowLayout {
         self.itemSize = itemSize
         self.minimumInteritemSpacing = 0.0
         self.minimumLineSpacing = 0
-        self.sectionInset = UIEdgeInsets(top: (screenSize.height/2.0) - (itemHeight/2.0), left: (screenSize.width/2.0) - (itemWidth/2.0), bottom: 100, right: (screenSize.height/2.0) - (itemHeight/2.0))
+        self.sectionInset = UIEdgeInsets(top: (screenSize.height/2.0) - (itemHeight/2.0), left: (screenSize.width/2.0) - (itemWidth/2.0), bottom: (screenSize.height/2.0) - (itemHeight/2.0), right: (screenSize.height/2.0) - (itemHeight/2.0))
     }
 }
 

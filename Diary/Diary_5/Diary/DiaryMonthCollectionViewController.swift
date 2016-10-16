@@ -60,10 +60,9 @@ class DiaryMonthCollectionViewController: UICollectionViewController {
                                 for: UIControlEvents.touchUpInside)
         
         self.view.addSubview(composeButton)
-
-
-        
+    
     }
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

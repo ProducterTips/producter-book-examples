@@ -10,7 +10,7 @@ import UIKit
 
 var defaultFont = "Wyue-GutiFangsong-NC"
 
-let screenRect = UIScreen.mainScreen().bounds
+let screenRect = UIScreen.main.bounds
 let DiaryRed = UIColor(red: 192.0/255.0, green: 23.0/255.0, blue: 48.0/255.0, alpha: 1.0)
 let DiaryFont = UIFont(name: defaultFont, size: 18) as UIFont!
 let DiaryLocationFont = UIFont(name: defaultFont, size: 16) as UIFont!
@@ -18,47 +18,47 @@ let DiaryTitleFont = UIFont(name: defaultFont, size: 18) as UIFont!
 
 //Coredata
 let appDelegate =
-UIApplication.sharedApplication().delegate as! AppDelegate
+UIApplication.shared.delegate as! AppDelegate
 
 let managedContext = appDelegate.managedObjectContext!
 
 extension Diary {
-    func updateTimeWithDate(date: NSDate){
+    func updateTimeWithDate(_ date: Date){
         self.created_at = date
-        self.year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: date)
-        self.month = NSCalendar.currentCalendar().component(NSCalendarUnit.Month, fromDate: date)
+        self.year = NSNumber((Calendar.current as NSCalendar).component(NSCalendar.Unit.year, from: date))
+        self.month = NSNumber((Calendar.current as NSCalendar).component(NSCalendar.Unit.month, from: date))
     }
 }
 
-func diaryButtonWith(text text: String, fontSize: CGFloat, width: CGFloat, normalImageName: String, highlightedImageName: String) -> UIButton {
+func diaryButtonWith(text: String, fontSize: CGFloat, width: CGFloat, normalImageName: String, highlightedImageName: String) -> UIButton {
     
-    let button = UIButton(type: UIButtonType.Custom) //创建自定义 Button
-    button.frame = CGRectMake(0, 0, width, width) //设定 Button 的大小
+    let button = UIButton(type: UIButtonType.custom) //创建自定义 Button
+    button.frame = CGRect(x: 0, y: 0, width: width, height: width) //设定 Button 的大小
     
     let font = UIFont(name: "Wyue-GutiFangsong-NC", size: fontSize) as UIFont!
-    let textAttributes: [String : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
+    let textAttributes: [String : AnyObject] = [NSFontAttributeName: font!, NSForegroundColorAttributeName: UIColor.white]
     let attributedText = NSAttributedString(string: text, attributes: textAttributes)
-    button.setAttributedTitle(attributedText, forState: UIControlState.Normal) //设置 Button 字体
+    button.setAttributedTitle(attributedText, for: UIControlState()) //设置 Button 字体
     
-    button.setBackgroundImage(UIImage(named: normalImageName), forState: UIControlState.Normal) //设置默认 Button 样式
-    button.setBackgroundImage(UIImage(named: highlightedImageName), forState: UIControlState.Highlighted) // 设置 Button 被按下时候的样式
+    button.setBackgroundImage(UIImage(named: normalImageName), for: UIControlState()) //设置默认 Button 样式
+    button.setBackgroundImage(UIImage(named: highlightedImageName), for: UIControlState.highlighted) // 设置 Button 被按下时候的样式
     
     return button
     
 }
 
-func diaryButtonWith(text text: String, fontSize: CGFloat, width: CGFloat, normalImageName: String, highlightedImageName: String, color: UIColor) -> UIButton {
+func diaryButtonWith(text: String, fontSize: CGFloat, width: CGFloat, normalImageName: String, highlightedImageName: String, color: UIColor) -> UIButton {
     
-    let button = UIButton(type: UIButtonType.Custom)
-    button.frame = CGRectMake(0, 0, width, width)
+    let button = UIButton(type: UIButtonType.custom)
+    button.frame = CGRect(x: 0, y: 0, width: width, height: width)
     
     let font = UIFont(name: defaultFont, size: fontSize) as UIFont!
-    let textAttributes: [String : AnyObject] = [NSFontAttributeName: font, NSForegroundColorAttributeName: color]
+    let textAttributes: [String : AnyObject] = [NSFontAttributeName: font!, NSForegroundColorAttributeName: color]
     let attributedText = NSAttributedString(string: text, attributes: textAttributes)
-    button.setAttributedTitle(attributedText, forState: UIControlState.Normal)
+    button.setAttributedTitle(attributedText, for: UIControlState())
     
-    button.setBackgroundImage(UIImage(named: normalImageName), forState: UIControlState.Normal)
-    button.setBackgroundImage(UIImage(named: highlightedImageName), forState: UIControlState.Highlighted)
+    button.setBackgroundImage(UIImage(named: normalImageName), for: UIControlState())
+    button.setBackgroundImage(UIImage(named: highlightedImageName), for: UIControlState.highlighted)
     
     return button
 }
@@ -66,7 +66,7 @@ func diaryButtonWith(text text: String, fontSize: CGFloat, width: CGFloat, norma
 
 
 
-func numberToChinese(number:Int) -> String {
+func numberToChinese(_ number:Int) -> String {
     let numbers = Array(String(number).characters)
     var finalString = ""
     for singleNumber in numbers {
@@ -76,12 +76,12 @@ func numberToChinese(number:Int) -> String {
     return finalString
 }
 
-func numberToChineseWithUnit(number:Int) -> String {
+func numberToChineseWithUnit(_ number:Int) -> String {
     let numbers = Array(String(number).characters)
     var units = unitParser(numbers.count)
     var finalString = ""
     
-    for (index, singleNumber) in numbers.enumerate() {
+    for (index, singleNumber) in numbers.enumerated() {
         let string = singleNumberToChinese(singleNumber)
         if (!(string == "零" && (index+1) == numbers.count)){
             finalString = "\(finalString)\(string)\(units[index])"
@@ -91,17 +91,17 @@ func numberToChineseWithUnit(number:Int) -> String {
     return finalString
 }
 
-func unitParser(unit:Int) -> [String] {
+func unitParser(_ unit:Int) -> [String] {
     
-    var units = Array(["万","千","百","十",""].reverse())
-    let parsedUnits = units[0..<(unit)].reverse()
+    var units = Array(["万","千","百","十",""].reversed())
+    let parsedUnits = units[0..<(unit)].reversed()
     let slicedUnits: ArraySlice<String> = ArraySlice(parsedUnits)
     let final: [String] = Array(slicedUnits)
     return final
 }
 
 
-func singleNumberToChinese(number:Character) -> String {
+func singleNumberToChinese(_ number:Character) -> String {
     switch number {
     case "0":
         return "零"

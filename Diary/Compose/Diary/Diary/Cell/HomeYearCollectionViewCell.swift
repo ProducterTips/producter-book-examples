@@ -23,6 +23,6 @@ class HomeYearCollectionViewCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-        self.textLabel.center = CGPointMake(itemWidth/2.0, 150.0/2.0)
+        self.textLabel.center = CGPoint(x: itemWidth/2.0, y: 150.0/2.0)
     }
 }

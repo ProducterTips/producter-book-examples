@@ -71,18 +71,25 @@ extension DetailViewController {
     
     
     func bezierUIDynamicSetup() {
+        // 创建物理碰撞盒子
         box = UIView(frame: CGRect(x: currentControlPoint, y: view.frame.height/2.0, width: 10, height: 10))
         //        box?.backgroundColor = UIColor.redColor()
         view.addSubview(box!)
         
+        // 创建 Animator
         animator = UIDynamicAnimator(referenceView:self.view)
         
+        // 给盒子添加重力属性
         gravity = UIGravityBehavior(items: [box!])
+        
+        // 将重力调整为x轴向左坠落
         gravity.gravityDirection = CGVector(dx: -10.9, dy: 0)
         
+        // 给盒子增加碰撞检测
         collision = UICollisionBehavior(items: [box!])
         collision.translatesReferenceBoundsIntoBoundary = true
         
+        // 修改盒子的弹性
         let itemBehaviour = UIDynamicItemBehavior(items: [box!])
         itemBehaviour.elasticity = 0.6
         
@@ -108,4 +115,6 @@ extension DetailViewController {
         }
         
     }
+    
+    
 }

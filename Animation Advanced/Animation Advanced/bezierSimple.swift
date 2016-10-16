@@ -18,7 +18,7 @@ extension DetailViewController {
     func bezierSimple() {
         
         
-        //// Polygon Drawing
+        //// 绘制多边形
         let polygonPath = UIBezierPath()
         polygonPath.move(to: CGPoint(x: 162, y: 93))
         polygonPath.addLine(to: CGPoint(x: 230.48, y: 142.75))
@@ -28,7 +28,7 @@ extension DetailViewController {
         polygonPath.close()
         
         
-        //// Star Drawing
+        //// 绘制五角星
         let starPath = UIBezierPath()
         starPath.move(to: CGPoint(x: 162, y: 82))
         starPath.addLine(to: CGPoint(x: 191.27, y: 124.71))

@@ -18,7 +18,7 @@ extension DetailViewController {
         let pan = UIPanGestureRecognizer(target: self, action: #selector(DetailViewController.updatePathPan(_:)))
         
         view.addGestureRecognizer(pan)
-        //// Polygon Drawing
+        //// 绘制多边形
         let polygonPath = UIBezierPath()
         polygonPath.move(to: CGPoint(x: 0, y: 0))
         polygonPath.addQuadCurve(to: CGPoint(x: 0, y: view.frame.height), controlPoint: CGPoint(x: 0, y: view.frame.height/2.0))
@@ -65,7 +65,7 @@ extension DetailViewController {
             
             currentControlPoint = currentControlPoint + translationPoint.x
             
-            //// Polygon Drawing
+            //// 绘制多边形
             let polygonPath = UIBezierPath()
             polygonPath.move(to: CGPoint(x: 0, y: 0))
             polygonPath.addQuadCurve(to: CGPoint(x: 0, y: view.frame.height), controlPoint: CGPoint(x: currentControlPoint, y: view.frame.height/2.0))
@@ -80,7 +80,7 @@ extension DetailViewController {
     func syncPath() {
         
         if let dummyView = dummyView, let currentLayer = dummyView.layer.presentation() {
-            //// Polygon Drawing
+            //// 绘制多边形
             let polygonPath = UIBezierPath()
             polygonPath.move(to: CGPoint(x: 0, y: 0))
             polygonPath.addQuadCurve(to: CGPoint(x: 0, y: view.frame.height), controlPoint: CGPoint(x: currentLayer.frame.origin.x, y: view.frame.height/2.0))

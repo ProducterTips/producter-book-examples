@@ -23,7 +23,7 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
     
     var monthLabel:DiaryLabel!
     
-    var fetchedResultsController : NSFetchedResultsController!
+    var fetchedResultsController : NSFetchedResultsController<AnyObject>!
 
     override func viewDidLoad() {
         
@@ -54,32 +54,32 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
         // Register cell classes
         yearLabel = DiaryLabel(fontname: "TpldKhangXiDictTrial", labelText: "\(numberToChinese(year))年", fontSize: 20.0,lineHeight: 5.0)
         
-        yearLabel.center = CGPointMake(screenRect.width - yearLabel.frame.size.width/2.0 - 15, 20 + yearLabel.frame.size.height/2.0 )
+        yearLabel.center = CGPoint(x: screenRect.width - yearLabel.frame.size.width/2.0 - 15, y: 20 + yearLabel.frame.size.height/2.0 )
         
         self.view.addSubview(yearLabel)
         
-        yearLabel.userInteractionEnabled = true
+        yearLabel.isUserInteractionEnabled = true
 
         
         //Add compose button
         
         composeButton = diaryButtonWith(text: "撰",  fontSize: 14.0,  width: 40.0,  normalImageName: "Oval", highlightedImageName: "Oval_pressed")
         
-        composeButton.center = CGPointMake(screenRect.width - yearLabel.frame.size.width/2.0 - 15, 38 + yearLabel.frame.size.height + 26.0/2.0)
+        composeButton.center = CGPoint(x: screenRect.width - yearLabel.frame.size.width/2.0 - 15, y: 38 + yearLabel.frame.size.height + 26.0/2.0)
         
-        composeButton.addTarget(self, action: "newCompose", forControlEvents: UIControlEvents.TouchUpInside)
+        composeButton.addTarget(self, action: #selector(DiaryMonthDayCollectionViewController.newCompose), for: UIControlEvents.touchUpInside)
         
         
         self.view.addSubview(composeButton)
         
         //
         monthLabel = DiaryLabel(fontname: "Wyue-GutiFangsong-NC", labelText: "\(numberToChineseWithUnit(month)) 月", fontSize: 16.0,lineHeight: 5.0)
-        monthLabel.frame = CGRectMake(screenRect.width - 15.0 - monthLabel.frame.size.width, (screenRect.height - 150)/2.0, monthLabel.frame.size.width, monthLabel.frame.size.height)
+        monthLabel.frame = CGRect(x: screenRect.width - 15.0 - monthLabel.frame.size.width, y: (screenRect.height - 150)/2.0, width: monthLabel.frame.size.width, height: monthLabel.frame.size.height)
         
-        monthLabel.center = CGPointMake(composeButton.center.x, monthLabel.center.y + 28)
+        monthLabel.center = CGPoint(x: composeButton.center.x, y: monthLabel.center.y + 28)
         
         monthLabel.updateLabelColor(DiaryRed)
-        monthLabel.userInteractionEnabled = true
+        monthLabel.isUserInteractionEnabled = true
         
         self.view.addSubview(monthLabel)
         
@@ -89,16 +89,16 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
         self.collectionView!.frame = CGRect(x:0, y:0, width: collectionViewWidth, height: itemHeight)
         self.collectionView!.center = CGPoint(x: self.view.frame.size.width/2.0, y: self.view.frame.size.height/2.0)
         
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
 
         // Do any additional setup after loading the view.
     }
     
     func newCompose() {
         
-        let composeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DiaryComposeViewController") as! DiaryComposeViewController
+        let composeViewController = self.storyboard?.instantiateViewController(withIdentifier: "DiaryComposeViewController") as! DiaryComposeViewController
         
-        self.presentViewController(composeViewController, animated: true, completion: nil)
+        self.present(composeViewController, animated: true, completion: nil)
         
     }
 
@@ -109,7 +109,7 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
 
 
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let leftRightMagrin = (collectionViewWidth - itemWidth)/2
         return UIEdgeInsetsMake(0, leftRightMagrin, 0, leftRightMagrin);
     }
@@ -118,38 +118,38 @@ class DiaryMonthDayCollectionViewController: UICollectionViewController {
 
 extension DiaryMonthDayCollectionViewController: UICollectionViewDelegateFlowLayout , NSFetchedResultsControllerDelegate {
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
         return 1
     }
     
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return diarys.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // Configure the cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("DiaryCollectionViewCell", forIndexPath: indexPath) as! DiaryCollectionViewCell
-        let diary = fetchedResultsController.objectAtIndexPath(indexPath) as! Diary
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiaryCollectionViewCell", for: indexPath) as! DiaryCollectionViewCell
+        let diary = fetchedResultsController.object(at: indexPath) as! Diary
         // Configure the cell
         
         if let title = diary.title {
             cell.labelText = title
         }else{
-            cell.labelText = "\(numberToChineseWithUnit(NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: diary.created_at))) 日"
+            cell.labelText = "\(numberToChineseWithUnit((Calendar.current as NSCalendar).component(NSCalendar.Unit.day, from: diary.created_at))) 日"
         }
         
         return cell
     }
 
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let dvc = self.storyboard?.instantiateViewControllerWithIdentifier("DiaryViewController") as! DiaryViewController
+        let dvc = self.storyboard?.instantiateViewController(withIdentifier: "DiaryViewController") as! DiaryViewController
         
-        let diary = fetchedResultsController.objectAtIndexPath(indexPath) as! Diary
+        let diary = fetchedResultsController.object(at: indexPath) as! Diary
         
         dvc.diary = diary
         
@@ -157,7 +157,7 @@ extension DiaryMonthDayCollectionViewController: UICollectionViewDelegateFlowLay
         
     }
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         diarys = fetchedResultsController.fetchedObjects as! [NSManagedObject]
         collectionView?.reloadData()
         self.collectionView?.setCollectionViewLayout(DiaryLayout(), animated: false)

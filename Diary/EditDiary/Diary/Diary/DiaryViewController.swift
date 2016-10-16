@@ -24,7 +24,7 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
         setupUI()
         
@@ -33,30 +33,29 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
     }
     
     func setupUI() {
-        webview = UIWebView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height))
+        webview = UIWebView(frame: CGRect(x: 0,y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         
         webview.scrollView.bounces = true
         
         webview.delegate = self
-        webview.backgroundColor = UIColor.whiteColor()
+        webview.backgroundColor = UIColor.white
         webview.scrollView.delegate = self
         
         self.view.addSubview(self.webview)
         
-        let mDoubleUpRecognizer = UITapGestureRecognizer(target: self, action: "hideDiary")
+        let mDoubleUpRecognizer = UITapGestureRecognizer(target: self, action: #selector(DiaryViewController.hideDiary))
         mDoubleUpRecognizer.delegate = self
         mDoubleUpRecognizer.numberOfTapsRequired = 2
         self.webview.addGestureRecognizer(mDoubleUpRecognizer)
         
-        let mTapUpRecognizer = UITapGestureRecognizer(target: self, action: "showButtons")
-        mTapUpRecognizer.delegate = self
+        let mTapUpRecognizer = UITapGestureRecognizer(target: self, action: #selector(DiaryViewController.showButtons))
         mTapUpRecognizer.numberOfTapsRequired = 1
         self.webview.addGestureRecognizer(mTapUpRecognizer)
-        mTapUpRecognizer.requireGestureRecognizerToFail(mDoubleUpRecognizer)
+        mTapUpRecognizer.require(toFail: mDoubleUpRecognizer)
         //Add buttons
         
-        buttonsView = UIView(frame: CGRectMake(0, screenRect.height, screenRect.width, 80.0))
-        buttonsView.backgroundColor = UIColor.clearColor()
+        buttonsView = UIView(frame: CGRect(x: 0, y: screenRect.height, width: screenRect.width, height: 80.0))
+        buttonsView.backgroundColor = UIColor.clear
         buttonsView.alpha = 0.0
         
         let buttonFontSize:CGFloat = 18.0
@@ -64,26 +63,26 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
         
         saveButton = diaryButtonWith(text: "存",  fontSize: buttonFontSize,  width: 50.0,  normalImageName: "Oval", highlightedImageName: "Oval_pressed")
         
-        saveButton.center = CGPointMake(buttonsView.frame.width/2.0, buttonsView.frame.height/2.0)
+        saveButton.center = CGPoint(x: buttonsView.frame.width/2.0, y: buttonsView.frame.height/2.0)
         
-        saveButton.addTarget(self, action: "saveToRoll", forControlEvents: UIControlEvents.TouchUpInside)
+        saveButton.addTarget(self, action: #selector(DiaryViewController.saveToRoll), for: UIControlEvents.touchUpInside)
         
         buttonsView.addSubview(saveButton)
         
         
         editButton = diaryButtonWith(text: "改",  fontSize: buttonFontSize,  width: 50.0,  normalImageName: "Oval", highlightedImageName: "Oval_pressed")
         
-        editButton.center = CGPointMake(saveButton.center.x - 56.0, saveButton.center.y)
+        editButton.center = CGPoint(x: saveButton.center.x - 56.0, y: saveButton.center.y)
         
-        editButton.addTarget(self, action: "editDiary", forControlEvents: UIControlEvents.TouchUpInside)
+        editButton.addTarget(self, action: #selector(DiaryViewController.editDiary), for: UIControlEvents.touchUpInside)
         
         buttonsView.addSubview(editButton)
         
         deleteButton = diaryButtonWith(text: "刪",  fontSize: buttonFontSize,  width: 50.0,  normalImageName: "Oval", highlightedImageName: "Oval_pressed")
         
-        deleteButton.center = CGPointMake(saveButton.center.x + 56.0, saveButton.center.y)
+        deleteButton.center = CGPoint(x: saveButton.center.x + 56.0, y: saveButton.center.y)
         
-        deleteButton.addTarget(self, action: "deleteThisDiary", forControlEvents: UIControlEvents.TouchUpInside)
+        deleteButton.addTarget(self, action: #selector(DiaryViewController.deleteThisDiary), for: UIControlEvents.touchUpInside)
         
         buttonsView.addSubview(deleteButton)
         
@@ -91,48 +90,48 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
         
         webview.alpha = 0.0
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadWebView", name: "DiaryChangeFont", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(DiaryViewController.reloadWebView), name: NSNotification.Name(rawValue: "DiaryChangeFont"), object: nil)
         
 
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadWebView()
  
     }
     
     func reloadWebView() {
-        let mainHTML = NSBundle.mainBundle().URLForResource("DiaryTemplate", withExtension:"html")
+        let mainHTML = Bundle.main.url(forResource: "DiaryTemplate", withExtension:"html")
         var contents: NSString = ""
         
         do {
-            contents = try NSString(contentsOfFile: mainHTML!.path!, encoding: NSUTF8StringEncoding)
+            contents = try NSString(contentsOfFile: mainHTML!.path, encoding: String.Encoding.utf8.rawValue)
         } catch let error as NSError {
             print(error)
         }
         
-        let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: diary.created_at)
-        let month = NSCalendar.currentCalendar().component(NSCalendarUnit.Month, fromDate: diary.created_at)
-        let day = NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: diary.created_at)
+        let year = (Calendar.current as NSCalendar).component(NSCalendar.Unit.year, from: diary.created_at as Date)
+        let month = (Calendar.current as NSCalendar).component(NSCalendar.Unit.month, from: diary.created_at as Date)
+        let day = (Calendar.current as NSCalendar).component(NSCalendar.Unit.day, from: diary.created_at as Date)
         
         let timeString = "\(numberToChinese(year))年 \(numberToChineseWithUnit(month))月 \(numberToChineseWithUnit(day))日"
         
-        contents = contents.stringByReplacingOccurrencesOfString("#timeString#", withString: timeString)
+        contents = contents.replacingOccurrences(of: "#timeString#", with: timeString)
         
         //WebView method
         
-        let newDiaryString = diary.content.stringByReplacingOccurrencesOfString("\n", withString: "<br>", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let newDiaryString = diary.content.replacingOccurrences(of: "\n", with: "<br>", options: NSString.CompareOptions.literal, range: nil)
         
-        contents = contents.stringByReplacingOccurrencesOfString("#newDiaryString#", withString: newDiaryString)
+        contents = contents.replacingOccurrences(of: "#newDiaryString#", with: newDiaryString) as NSString
         
         var title = ""
         var contentWidthOffset = 140
         var contentMargin:CGFloat = 10
         
         if let titleStr = diary?.title {
-            let parsedTime = "\(numberToChineseWithUnit(NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: diary.created_at))) 日"
+            let parsedTime = "\(numberToChineseWithUnit((Calendar.current as NSCalendar).component(NSCalendar.Unit.day, from: diary.created_at))) 日"
             if titleStr != parsedTime {
                 title = titleStr
                 contentWidthOffset = 205
@@ -141,26 +140,26 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
             }
         }
         
-        contents = contents.stringByReplacingOccurrencesOfString("#contentMargin#", withString: "\(contentMargin)")
+        contents = contents.replacingOccurrences(of: "#contentMargin#", with: "\(contentMargin)") as NSString
         
-        contents = contents.stringByReplacingOccurrencesOfString("#title#", withString: title)
+        contents = contents.replacingOccurrences(of: "#title#", with: title) as NSString
         
         let minWidth = self.view.frame.size.width - CGFloat(contentWidthOffset)
         
-        contents = contents.stringByReplacingOccurrencesOfString("#minWidth#", withString: "\(minWidth)")
+        contents = contents.replacingOccurrences(of: "#minWidth#", with: "\(minWidth)") as NSString
         
         let fontStr = defaultFont
         
-        contents = contents.stringByReplacingOccurrencesOfString("#fontStr#", withString: fontStr)
+        contents = contents.replacingOccurrences(of: "#fontStr#", with: fontStr) as NSString
         
         let titleMarginRight:CGFloat = 15
         
-        contents = contents.stringByReplacingOccurrencesOfString("#titleMarginRight#", withString: "\(titleMarginRight)")
+        contents = contents.replacingOccurrences(of: "#titleMarginRight#", with: "\(titleMarginRight)") as NSString
         
         if let location = diary.location {
-            contents = contents.stringByReplacingOccurrencesOfString("#location#", withString: location)
+            contents = contents.replacingOccurrences(of: "#location#", with: location) as NSString
         } else {
-            contents = contents.stringByReplacingOccurrencesOfString("#location#", withString: "")
+            contents = contents.replacingOccurrences(of: "#location#", with: "") as NSString
         }
         
         
@@ -171,18 +170,18 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
     func showButtons() {
 
         if(buttonsView.alpha == 0.0) {
-            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations:
+            UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations:
                 {
-                    self.buttonsView.center = CGPointMake(self.buttonsView.center.x, screenRect.height - self.buttonsView.frame.size.height/2.0)
+                    self.buttonsView.center = CGPoint(x: self.buttonsView.center.x, y: screenRect.height - self.buttonsView.frame.size.height/2.0)
                     self.buttonsView.alpha = 1.0
                     
                 }, completion: nil)
             
         }else{
             
-            UIView.animateWithDuration(0.1, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations:
+            UIView.animate(withDuration: 0.1, delay: 0, options: UIViewAnimationOptions(), animations:
                 {
-                    self.buttonsView.center = CGPointMake(self.buttonsView.center.x, screenRect.height + self.buttonsView.frame.size.height/2.0)
+                    self.buttonsView.center = CGPoint(x: self.buttonsView.center.x, y: screenRect.height + self.buttonsView.frame.size.height/2.0)
                     self.buttonsView.alpha = 0.0
                 }, completion: nil)
             
@@ -190,7 +189,7 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
     }
     
     func editDiary() {
-        let composeViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DiaryComposeViewController") as! DiaryComposeViewController
+        let composeViewController = self.storyboard?.instantiateViewController(withIdentifier: "DiaryComposeViewController") as! DiaryComposeViewController
         
         if let diary = diary {
             
@@ -199,7 +198,7 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
             composeViewController.diary = diary
         }
         
-        self.presentViewController(composeViewController, animated: true, completion: nil)
+        self.present(composeViewController, animated: true, completion: nil)
     }
     
     func saveToRoll() {
@@ -216,13 +215,13 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
         
         let activityViewController = UIActivityViewController(activityItems: sharingItems, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.saveButton
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        self.present(activityViewController, animated: true, completion: nil)
 
     }
     
     
     func deleteThisDiary() {
-        managedContext.deleteObject(diary)
+        managedContext.delete(diary)
         do {
             try managedContext.save()
         } catch _ {
@@ -230,18 +229,18 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
         hideDiary()
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
-        UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations:
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIView.animate(withDuration: 1.0, delay: 0, options: UIViewAnimationOptions(), animations:
         {
             self.webview.alpha = 1.0
         }, completion: nil)
 
-        webview.scrollView.contentOffset = CGPointMake(webview.scrollView.contentSize.width - webview.frame.size.width, 0)
+        webview.scrollView.contentOffset = CGPoint(x: webview.scrollView.contentSize.width - webview.frame.size.width, y: 0)
     }
     
     func hideDiary() {
 
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -249,12 +248,12 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
         // Dispose of any resources that can be recreated.
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailByGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if (scrollView.contentOffset.y < -80){
             hideDiary()
         }

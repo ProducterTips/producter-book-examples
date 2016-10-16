@@ -29,7 +29,7 @@ class DiaryLocationHelper: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+    func locationManager(_ manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         
         geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (placemarks, error) in
             
@@ -44,7 +44,7 @@ class DiaryLocationHelper: NSObject, CLLocationManagerDelegate {
                     
                     self.address = placemark?.locality
                     
-                    NSNotificationCenter.defaultCenter().postNotificationName("DiaryLocationUpdated", object: self.address)
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "DiaryLocationUpdated"), object: self.address)
                 }
             }
             

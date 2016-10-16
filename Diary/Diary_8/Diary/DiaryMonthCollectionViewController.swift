@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import CoreData
+
 let DiaryRed = UIColor.init(colorLiteralRed: 192.0/255.0, green: 23/255.0, blue: 48.0/255.0, alpha: 1)
 
 class DiaryMonthCollectionViewController: UICollectionViewController {
+    var year: Int!
     var month: Int!
     var yearLabel: DiaryLabel!
     var monthLabel: DiaryLabel!
+    var fetchedResultsController : NSFetchedResultsController<Diary>!
+    var diarys = [Diary]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +65,35 @@ class DiaryMonthCollectionViewController: UICollectionViewController {
                                 for: UIControlEvents.touchUpInside)
         
         self.view.addSubview(composeButton)
+        
+        // 查询数据
+        
+        do {
+            // 新建查询
+            let fetchRequest = NSFetchRequest<Diary>(entityName:"Diary")
+            
+            // 增加过滤条件
+            fetchRequest.predicate = NSPredicate(format:"year = \(year!) AND month = \(month!)")
+            
+            // 排序方式
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: true)]
+            
+            fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                                  managedObjectContext: managedContext, sectionNameKeyPath: nil,
+                                                                  cacheName: nil)
+            
+            // 尝试查询
+            try self.fetchedResultsController.performFetch()
+            
+            if (fetchedResultsController.fetchedObjects!.count == 0){
+                print("没有存储结果")
+            }else{
+                diarys = fetchedResultsController.fetchedObjects!
+            }
+            
+        } catch let error as NSError {
+            NSLog("发现错误 \(error.localizedDescription)")
+        }
     
     }
     
@@ -83,7 +117,7 @@ class DiaryMonthCollectionViewController: UICollectionViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return diarys.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -91,8 +125,9 @@ class DiaryMonthCollectionViewController: UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! DiaryCell
         
-        cell.textInt = 1
-        cell.labelText = "季风气候"
+        let diary = diarys[indexPath.row]
+        
+        cell.labelText = diary.title!
         
         return cell
     }

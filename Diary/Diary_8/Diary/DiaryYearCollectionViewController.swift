@@ -102,8 +102,19 @@ class DiaryYearCollectionViewController: UICollectionViewController {
         
         let dvc = self.storyboard?.instantiateViewController(withIdentifier: identifier) as! DiaryMonthCollectionViewController // 获取 DiaryMonthCollectionViewController
         
+        // 获取当前月份
+        let components = Calendar.current.component(Calendar.Component.month, from: Date())
+        var month = components
+        
+        if sectionsCount > 0 {
+            // 如果程序内有保存的日记，就使用保存的日记的月份
+            let sectionInfo = fetchedResultsController.sections![indexPath.section]
+            print("分组信息 \(sectionInfo.name)")
+            month = Int(sectionInfo.name)!
+        }
         // 指定是 2015 年的 1 月份
-        dvc.month = 1
+        dvc.month = month
+        dvc.year = year
         
         // 页面跳转
         self.navigationController!.pushViewController(dvc, animated: true)

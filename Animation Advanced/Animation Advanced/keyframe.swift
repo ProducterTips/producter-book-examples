@@ -12,7 +12,7 @@ extension DetailViewController {
     func keyFrame() {
         imageView.image = UIImage(named: "leaf")
         imageView.clipsToBounds = true
-        imageView.contentMode = UIViewContentMode.ScaleAspectFill
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
         
         view.window!.addSubview(imageView)
         imageView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: 260)
@@ -20,21 +20,21 @@ extension DetailViewController {
     }
     
     func startKeyFrameAnimation() {
-        UIView.animateKeyframesWithDuration(2, delay: 0, options: UIViewKeyframeAnimationOptions.CalculationModeCubic, animations: {
+        UIView.animateKeyframes(withDuration: 2, delay: 0, options: UIViewKeyframeAnimationOptions.calculationModeCubic, animations: {
             
-            UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.5) {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {
                 self.imageView.frame = CGRect(x: 0, y: 48, width: self.view.frame.width, height: 0)
             }
             
-            UIView.addKeyframeWithRelativeStartTime(0.25, relativeDuration: 0.5) {
+            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.5) {
                 self.imageView.frame = CGRect(x: 0, y: 32, width: self.view.frame.width, height: 260 + self.view.frame.height/4.0)
             }
             
-            UIView.addKeyframeWithRelativeStartTime(0.5, relativeDuration: 0.5) {
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
                 self.imageView.frame = CGRect(x: 0, y: 16, width: self.view.frame.width, height: 260 + self.view.frame.height/2.0)
             }
             
-            UIView.addKeyframeWithRelativeStartTime(0.75, relativeDuration: 0.5) {
+            UIView.addKeyframe(withRelativeStartTime: 0.75, relativeDuration: 0.5) {
                 self.imageView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
             }
             }, completion: nil)

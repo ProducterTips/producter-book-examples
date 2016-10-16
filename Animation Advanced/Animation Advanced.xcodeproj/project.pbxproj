@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A4FDAFA1B9B5C3300C4A33B /* bezierSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDAF91B9B5C3300C4A33B /* bezierSimple.swift */; settings = {ASSET_TAGS = (); }; };
-		6A4FDAFC1B9B5C8700C4A33B /* bezierAdvanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDAFB1B9B5C8700C4A33B /* bezierAdvanced.swift */; settings = {ASSET_TAGS = (); }; };
-		6A4FDAFE1B9B5CBB00C4A33B /* bezierUIDynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDAFD1B9B5CBB00C4A33B /* bezierUIDynamic.swift */; settings = {ASSET_TAGS = (); }; };
-		6A4FDB001B9B5E3600C4A33B /* keyframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDAFF1B9B5E3600C4A33B /* keyframe.swift */; settings = {ASSET_TAGS = (); }; };
-		6A4FDB021B9B636A00C4A33B /* maskAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDB011B9B636A00C4A33B /* maskAnimation.swift */; settings = {ASSET_TAGS = (); }; };
+		6A4FDAFA1B9B5C3300C4A33B /* bezierSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDAF91B9B5C3300C4A33B /* bezierSimple.swift */; };
+		6A4FDAFC1B9B5C8700C4A33B /* bezierAdvanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDAFB1B9B5C8700C4A33B /* bezierAdvanced.swift */; };
+		6A4FDAFE1B9B5CBB00C4A33B /* bezierUIDynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDAFD1B9B5CBB00C4A33B /* bezierUIDynamic.swift */; };
+		6A4FDB001B9B5E3600C4A33B /* keyframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDAFF1B9B5E3600C4A33B /* keyframe.swift */; };
+		6A4FDB021B9B636A00C4A33B /* maskAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4FDB011B9B636A00C4A33B /* maskAnimation.swift */; };
 		6AC7997C1B92082C00DDFD47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7997B1B92082C00DDFD47 /* AppDelegate.swift */; };
 		6AC7997E1B92082C00DDFD47 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7997D1B92082C00DDFD47 /* MasterViewController.swift */; };
 		6AC799801B92082C00DDFD47 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7997F1B92082C00DDFD47 /* DetailViewController.swift */; };
@@ -116,11 +116,12 @@
 		6AC799701B92082C00DDFD47 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = zhowkevin;
 				TargetAttributes = {
 					6AC799771B92082C00DDFD47 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -206,8 +207,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -251,8 +254,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -271,6 +276,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -284,6 +290,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kevinzhow.Animation-Advanced";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -295,6 +302,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "kevinzhow.Animation-Advanced";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -34,9 +34,9 @@ class DetailViewController: UIViewController {
     
     //
     
-    var imageView = UIImageView(frame: CGRectZero)
+    var imageView = UIImageView(frame: CGRect.zero)
     
-    var maskView = UIImageView(frame: CGRectZero)
+    var maskView = UIImageView(frame: CGRect.zero)
 
     var detailItem: AnimationType? {
         didSet {
@@ -61,7 +61,7 @@ class DetailViewController: UIViewController {
         self.configureView()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if let detail = self.detailItem {

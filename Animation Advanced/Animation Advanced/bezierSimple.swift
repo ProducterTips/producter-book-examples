@@ -20,50 +20,50 @@ extension DetailViewController {
         
         //// Polygon Drawing
         let polygonPath = UIBezierPath()
-        polygonPath.moveToPoint(CGPointMake(162, 93))
-        polygonPath.addLineToPoint(CGPointMake(230.48, 142.75))
-        polygonPath.addLineToPoint(CGPointMake(204.32, 223.25))
-        polygonPath.addLineToPoint(CGPointMake(119.68, 223.25))
-        polygonPath.addLineToPoint(CGPointMake(93.52, 142.75))
-        polygonPath.closePath()
+        polygonPath.move(to: CGPoint(x: 162, y: 93))
+        polygonPath.addLine(to: CGPoint(x: 230.48, y: 142.75))
+        polygonPath.addLine(to: CGPoint(x: 204.32, y: 223.25))
+        polygonPath.addLine(to: CGPoint(x: 119.68, y: 223.25))
+        polygonPath.addLine(to: CGPoint(x: 93.52, y: 142.75))
+        polygonPath.close()
         
         
         //// Star Drawing
         let starPath = UIBezierPath()
-        starPath.moveToPoint(CGPointMake(162, 82))
-        starPath.addLineToPoint(CGPointMake(191.27, 124.71))
-        starPath.addLineToPoint(CGPointMake(240.94, 139.35))
-        starPath.addLineToPoint(CGPointMake(209.36, 180.39))
-        starPath.addLineToPoint(CGPointMake(210.79, 232.15))
-        starPath.addLineToPoint(CGPointMake(162, 214.8))
-        starPath.addLineToPoint(CGPointMake(113.21, 232.15))
-        starPath.addLineToPoint(CGPointMake(114.64, 180.39))
-        starPath.addLineToPoint(CGPointMake(83.06, 139.35))
-        starPath.addLineToPoint(CGPointMake(132.73, 124.71))
-        starPath.closePath()
+        starPath.move(to: CGPoint(x: 162, y: 82))
+        starPath.addLine(to: CGPoint(x: 191.27, y: 124.71))
+        starPath.addLine(to: CGPoint(x: 240.94, y: 139.35))
+        starPath.addLine(to: CGPoint(x: 209.36, y: 180.39))
+        starPath.addLine(to: CGPoint(x: 210.79, y: 232.15))
+        starPath.addLine(to: CGPoint(x: 162, y: 214.8))
+        starPath.addLine(to: CGPoint(x: 113.21, y: 232.15))
+        starPath.addLine(to: CGPoint(x: 114.64, y: 180.39))
+        starPath.addLine(to: CGPoint(x: 83.06, y: 139.35))
+        starPath.addLine(to: CGPoint(x: 132.73, y: 124.71))
+        starPath.close()
         
         // 绘制 CAShapeLayer
         
         let shape = CAShapeLayer()
         shape.drawsAsynchronously = true
         shape.frame = view.bounds
-        shape.path = polygonPath.CGPath
+        shape.path = polygonPath.cgPath
         shape.lineWidth = 3.0
         shape.lineCap = kCALineCapRound
         shape.lineJoin = kCALineJoinRound
-        shape.strokeColor = UIColor.whiteColor().CGColor
-        shape.fillColor = color.CGColor
+        shape.strokeColor = UIColor.white.cgColor
+        shape.fillColor = color.cgColor
         view.layer.addSublayer(shape)
         
         let pathAnimation = CABasicAnimation(keyPath: "path")
-        pathAnimation.fromValue = polygonPath.CGPath
-        pathAnimation.toValue = starPath.CGPath
+        pathAnimation.fromValue = polygonPath.cgPath
+        pathAnimation.toValue = starPath.cgPath
         pathAnimation.duration = 1.0
         pathAnimation.autoreverses = false
         pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         
-        shape.addAnimation(pathAnimation, forKey: "animationKey")
+        shape.add(pathAnimation, forKey: "animationKey")
         
-        shape.path = starPath.CGPath
+        shape.path = starPath.cgPath
     }
 }

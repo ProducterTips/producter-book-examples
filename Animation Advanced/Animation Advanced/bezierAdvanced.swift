@@ -15,43 +15,43 @@ extension DetailViewController {
     
     func bezierAdvanced() {
         
-        let pan = UIPanGestureRecognizer(target: self, action: "updatePathPan:")
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(DetailViewController.updatePathPan(_:)))
         
         view.addGestureRecognizer(pan)
         //// Polygon Drawing
         let polygonPath = UIBezierPath()
-        polygonPath.moveToPoint(CGPointMake(0, 0))
-        polygonPath.addQuadCurveToPoint(CGPointMake(0, view.frame.height), controlPoint: CGPointMake(0, view.frame.height/2.0))
-        polygonPath.closePath()
+        polygonPath.move(to: CGPoint(x: 0, y: 0))
+        polygonPath.addQuadCurve(to: CGPoint(x: 0, y: view.frame.height), controlPoint: CGPoint(x: 0, y: view.frame.height/2.0))
+        polygonPath.close()
         
         // 绘制 CAShapeLayer
         
         jellyShape.drawsAsynchronously = true
         jellyShape.frame = view.bounds
-        jellyShape.path = polygonPath.CGPath
+        jellyShape.path = polygonPath.cgPath
         jellyShape.lineWidth = 3.0
         jellyShape.lineCap = kCALineCapRound
         jellyShape.lineJoin = kCALineJoinRound
-        jellyShape.strokeColor = UIColor.whiteColor().CGColor
-        jellyShape.fillColor = color.CGColor
+        jellyShape.strokeColor = UIColor.white.cgColor
+        jellyShape.fillColor = color.cgColor
         view.layer.addSublayer(jellyShape)
     }
     
-    func updatePathPan(gesture: UIPanGestureRecognizer) {
+    func updatePathPan(_ gesture: UIPanGestureRecognizer) {
         
-        if gesture.state == UIGestureRecognizerState.Ended {
+        if gesture.state == UIGestureRecognizerState.ended {
             
-            let displayLink = CADisplayLink(target: self, selector: "syncPath")
+            let displayLink = CADisplayLink(target: self, selector: #selector(DetailViewController.syncPath))
             
-            displayLink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+            displayLink.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
             
             dummyView = UIView(frame: CGRect(x: currentControlPoint, y: view.frame.height/2.0, width: 10, height: 10))
             
             view.addSubview(dummyView!)
             
-            UIView.animateWithDuration(1.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 50, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 50, options: UIViewAnimationOptions(), animations: { () -> Void in
                 
-                self.dummyView!.center = CGPointMake(0, self.view.frame.height/2.0)
+                self.dummyView!.center = CGPoint(x: 0, y: self.view.frame.height/2.0)
                 
                 }, completion: { finish in
                     self.currentControlPoint = 0
@@ -60,33 +60,33 @@ extension DetailViewController {
             
             
             
-        } else if gesture.state == UIGestureRecognizerState.Changed {
-            let translationPoint = gesture.translationInView(view)
+        } else if gesture.state == UIGestureRecognizerState.changed {
+            let translationPoint = gesture.translation(in: view)
             
             currentControlPoint = currentControlPoint + translationPoint.x
             
             //// Polygon Drawing
             let polygonPath = UIBezierPath()
-            polygonPath.moveToPoint(CGPointMake(0, 0))
-            polygonPath.addQuadCurveToPoint(CGPointMake(0, view.frame.height), controlPoint: CGPointMake(currentControlPoint, view.frame.height/2.0))
-            polygonPath.closePath()
-            gesture.setTranslation(CGPointZero, inView: view)
+            polygonPath.move(to: CGPoint(x: 0, y: 0))
+            polygonPath.addQuadCurve(to: CGPoint(x: 0, y: view.frame.height), controlPoint: CGPoint(x: currentControlPoint, y: view.frame.height/2.0))
+            polygonPath.close()
+            gesture.setTranslation(CGPoint.zero, in: view)
             
-            jellyShape.path = polygonPath.CGPath
+            jellyShape.path = polygonPath.cgPath
         }
         
     }
     
     func syncPath() {
         
-        if let dummyView = dummyView, currentLayer = dummyView.layer.presentationLayer() as? CALayer {
+        if let dummyView = dummyView, let currentLayer = dummyView.layer.presentation() {
             //// Polygon Drawing
             let polygonPath = UIBezierPath()
-            polygonPath.moveToPoint(CGPointMake(0, 0))
-            polygonPath.addQuadCurveToPoint(CGPointMake(0, view.frame.height), controlPoint: CGPointMake(currentLayer.frame.origin.x, view.frame.height/2.0))
-            polygonPath.closePath()
+            polygonPath.move(to: CGPoint(x: 0, y: 0))
+            polygonPath.addQuadCurve(to: CGPoint(x: 0, y: view.frame.height), controlPoint: CGPoint(x: currentLayer.frame.origin.x, y: view.frame.height/2.0))
+            polygonPath.close()
             
-            jellyShape.path = polygonPath.CGPath
+            jellyShape.path = polygonPath.cgPath
         }
         
     }

@@ -16,71 +16,71 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
         setupUI()
         // Do any additional setup after loading the view.
     }
     
     func setupUI() {
-        webview = UIWebView(frame: CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height))
+        webview = UIWebView(frame: CGRect(x: 0,y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         
         webview.scrollView.bounces = true
         
         webview.delegate = self
-        webview.backgroundColor = UIColor.whiteColor()
+        webview.backgroundColor = UIColor.white
         webview.scrollView.delegate = self
         
         self.view.addSubview(self.webview)
         
-        let mDoubleUpRecognizer = UITapGestureRecognizer(target: self, action: "hideDiary")
+        let mDoubleUpRecognizer = UITapGestureRecognizer(target: self, action: #selector(DiaryViewController.hideDiary))
         mDoubleUpRecognizer.delegate = self
         mDoubleUpRecognizer.numberOfTapsRequired = 2
         self.webview.addGestureRecognizer(mDoubleUpRecognizer)
         
         webview.alpha = 0.0
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadWebView", name: "DiaryChangeFont", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(DiaryViewController.reloadWebView), name: NSNotification.Name(rawValue: "DiaryChangeFont"), object: nil)
         
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadWebView()
  
     }
     
     func reloadWebView() {
-        let mainHTML = NSBundle.mainBundle().URLForResource("DiaryTemplate", withExtension:"html")
+        let mainHTML = Bundle.main.url(forResource: "DiaryTemplate", withExtension:"html")
         var contents: NSString = ""
         
         do {
-            contents = try NSString(contentsOfFile: mainHTML!.path!, encoding: NSUTF8StringEncoding)
+            contents = try NSString(contentsOfFile: mainHTML!.path, encoding: String.Encoding.utf8.rawValue)
         } catch let error as NSError {
             print(error)
         }
         
-        let year = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: diary.created_at)
-        let month = NSCalendar.currentCalendar().component(NSCalendarUnit.Month, fromDate: diary.created_at)
-        let day = NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: diary.created_at)
+        let year = (Calendar.current as NSCalendar).component(NSCalendar.Unit.year, from: diary.created_at as Date)
+        let month = (Calendar.current as NSCalendar).component(NSCalendar.Unit.month, from: diary.created_at as Date)
+        let day = (Calendar.current as NSCalendar).component(NSCalendar.Unit.day, from: diary.created_at as Date)
         
         let timeString = "\(numberToChinese(year))年 \(numberToChineseWithUnit(month))月 \(numberToChineseWithUnit(day))日"
         
-        contents = contents.stringByReplacingOccurrencesOfString("#timeString#", withString: timeString)
+        contents = contents.replacingOccurrences(of: "#timeString#", with: timeString)
         
         //WebView method
         
-        let newDiaryString = diary.content.stringByReplacingOccurrencesOfString("\n", withString: "<br>", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let newDiaryString = diary.content.replacingOccurrences(of: "\n", with: "<br>", options: NSString.CompareOptions.literal, range: nil)
         
-        contents = contents.stringByReplacingOccurrencesOfString("#newDiaryString#", withString: newDiaryString)
+        contents = contents.replacingOccurrences(of: "#newDiaryString#", with: newDiaryString) as NSString
         
         var title = ""
         var contentWidthOffset = 140
         var contentMargin:CGFloat = 10
         
         if let titleStr = diary?.title {
-            let parsedTime = "\(numberToChineseWithUnit(NSCalendar.currentCalendar().component(NSCalendarUnit.Day, fromDate: diary.created_at))) 日"
+            let parsedTime = "\(numberToChineseWithUnit((Calendar.current as NSCalendar).component(NSCalendar.Unit.day, from: diary.created_at))) 日"
             if titleStr != parsedTime {
                 title = titleStr
                 contentWidthOffset = 205
@@ -89,26 +89,26 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
             }
         }
         
-        contents = contents.stringByReplacingOccurrencesOfString("#contentMargin#", withString: "\(contentMargin)")
+        contents = contents.replacingOccurrences(of: "#contentMargin#", with: "\(contentMargin)") as NSString
         
-        contents = contents.stringByReplacingOccurrencesOfString("#title#", withString: title)
+        contents = contents.replacingOccurrences(of: "#title#", with: title) as NSString
         
         let minWidth = self.view.frame.size.width - CGFloat(contentWidthOffset)
         
-        contents = contents.stringByReplacingOccurrencesOfString("#minWidth#", withString: "\(minWidth)")
+        contents = contents.replacingOccurrences(of: "#minWidth#", with: "\(minWidth)") as NSString
         
         let fontStr = defaultFont
         
-        contents = contents.stringByReplacingOccurrencesOfString("#fontStr#", withString: fontStr)
+        contents = contents.replacingOccurrences(of: "#fontStr#", with: fontStr) as NSString
         
         let titleMarginRight:CGFloat = 15
         
-        contents = contents.stringByReplacingOccurrencesOfString("#titleMarginRight#", withString: "\(titleMarginRight)")
+        contents = contents.replacingOccurrences(of: "#titleMarginRight#", with: "\(titleMarginRight)") as NSString
         
         if let location = diary.location {
-            contents = contents.stringByReplacingOccurrencesOfString("#location#", withString: location)
+            contents = contents.replacingOccurrences(of: "#location#", with: location) as NSString
         } else {
-            contents = contents.stringByReplacingOccurrencesOfString("#location#", withString: "")
+            contents = contents.replacingOccurrences(of: "#location#", with: "") as NSString
         }
         
         
@@ -116,18 +116,18 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
     }
     
 
-    func webViewDidFinishLoad(webView: UIWebView) {
-        UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations:
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIView.animate(withDuration: 1.0, delay: 0, options: UIViewAnimationOptions(), animations:
         {
             self.webview.alpha = 1.0
         }, completion: nil)
 
-        webview.scrollView.contentOffset = CGPointMake(webview.scrollView.contentSize.width - webview.frame.size.width, 0)
+        webview.scrollView.contentOffset = CGPoint(x: webview.scrollView.contentSize.width - webview.frame.size.width, y: 0)
     }
     
     func hideDiary() {
 
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -135,12 +135,12 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
         // Dispose of any resources that can be recreated.
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailByGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         
         return true
     }
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if (scrollView.contentOffset.y < -80){
             hideDiary()
         }

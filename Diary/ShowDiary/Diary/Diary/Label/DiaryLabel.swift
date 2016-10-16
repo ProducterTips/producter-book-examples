@@ -8,13 +8,13 @@
 
 import UIKit
 
-func sizeHeightWithText(labelText: NSString,
+func sizeHeightWithText(_ labelText: NSString,
     fontSize: CGFloat,
     textAttributes: [String : AnyObject]) -> CGRect {
         
-        return labelText.boundingRectWithSize(
-            CGSizeMake(fontSize, 480),
-            options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+        return labelText.boundingRect(
+            with: CGSize(width: fontSize, height: 480),
+            options: NSStringDrawingOptions.usesLineFragmentOrigin,
             attributes: textAttributes, context: nil)
 }
 
@@ -27,7 +27,7 @@ class DiaryLabel: UILabel {
         fontSize : CGFloat,
         lineHeight: CGFloat){
             
-            self.init(frame: CGRectZero)
+            self.init(frame: CGRect.zero)
             
             let font = UIFont(name: fontname,
                 size: fontSize) as UIFont!
@@ -35,22 +35,22 @@ class DiaryLabel: UILabel {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = lineHeight
             
-            textAttributes = [NSFontAttributeName: font,
+            textAttributes = [NSFontAttributeName: font!,
                 NSParagraphStyleAttributeName: paragraphStyle]
             
-            let labelSize = sizeHeightWithText(labelText, fontSize: fontSize ,textAttributes: textAttributes)
+            let labelSize = sizeHeightWithText(labelText as NSString, fontSize: fontSize ,textAttributes: textAttributes)
             
-            self.frame = CGRectMake(0, 0, labelSize.width,
-                labelSize.height)
+            self.frame = CGRect(x: 0, y: 0, width: labelSize.width,
+                height: labelSize.height)
             
             self.attributedText = NSAttributedString(
                 string: labelText,
                 attributes: textAttributes)
-            self.lineBreakMode = NSLineBreakMode.ByCharWrapping
+            self.lineBreakMode = NSLineBreakMode.byCharWrapping
             self.numberOfLines = 0
     }
     
-    func resizeLabelWithFontName(fontname:String,
+    func resizeLabelWithFontName(_ fontname:String,
         labelText:String,
         fontSize : CGFloat,
         lineHeight: CGFloat ){
@@ -60,39 +60,39 @@ class DiaryLabel: UILabel {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineSpacing = lineHeight
             
-            textAttributes = [NSFontAttributeName: font,
-                NSForegroundColorAttributeName: UIColor.blackColor(),
+            textAttributes = [NSFontAttributeName: font!,
+                NSForegroundColorAttributeName: UIColor.black,
                 NSParagraphStyleAttributeName: paragraphStyle]
             
-            let labelSize = sizeHeightWithText(labelText, fontSize: fontSize
+            let labelSize = sizeHeightWithText(labelText as NSString, fontSize: fontSize
                 ,textAttributes: textAttributes)
             
-            self.frame = CGRectMake(0, 0, labelSize.width,
-                labelSize.height)
+            self.frame = CGRect(x: 0, y: 0, width: labelSize.width,
+                height: labelSize.height)
             
             self.attributedText = NSAttributedString(
                 string: labelText,
                 attributes: textAttributes)
             
-            self.lineBreakMode = NSLineBreakMode.ByCharWrapping
+            self.lineBreakMode = NSLineBreakMode.byCharWrapping
             self.numberOfLines = 0
     }
     
-    func updateText(labelText: String) {
+    func updateText(_ labelText: String) {
         
-        let labelSize = sizeHeightWithText(labelText,
+        let labelSize = sizeHeightWithText(labelText as NSString,
             fontSize: self.font.pointSize,
             textAttributes: textAttributes)
         
-        self.frame = CGRectMake(0, 0, labelSize.width,
-            labelSize.height)
+        self.frame = CGRect(x: 0, y: 0, width: labelSize.width,
+            height: labelSize.height)
         
         self.attributedText = NSAttributedString(
             string: labelText,
             attributes: textAttributes)
     }
     
-    func updateLabelColor(color: UIColor) {
+    func updateLabelColor(_ color: UIColor) {
         
         textAttributes[NSForegroundColorAttributeName] = color
         

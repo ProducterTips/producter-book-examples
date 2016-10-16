@@ -18,13 +18,13 @@ class HomeCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         let yearLayout = DiaryLayout()
         
-        yearLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        yearLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
         self.collectionView?.setCollectionViewLayout(yearLayout, animated: false)
         
         self.collectionView!.frame = CGRect(x:0, y:0, width: collectionViewWidth, height: itemHeight)
         self.collectionView!.center = CGPoint(x: self.view.frame.size.width/2.0, y: self.view.frame.size.height/2.0)
 
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
         self.navigationController!.delegate = self
         // Do any additional setup after loading the view.
@@ -48,19 +48,19 @@ class HomeCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
         return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
         return 1
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> HomeYearCollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeYearCollectionViewCell", forIndexPath: indexPath) as! HomeYearCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> HomeYearCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeYearCollectionViewCell", for: indexPath) as! HomeYearCollectionViewCell
         
         cell.textInt = 2015
         cell.labelText = "二零一五 年"
@@ -68,13 +68,13 @@ class HomeCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         let leftRightMagrin = (collectionViewWidth - itemWidth)/2
         return UIEdgeInsetsMake(0, leftRightMagrin, 0, leftRightMagrin);
     }
 
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let dvc = self.storyboard?.instantiateViewControllerWithIdentifier("DiaryYearCollectionViewController") as! DiaryYearCollectionViewController // 获取 DiaryYearCollectionViewController
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dvc = self.storyboard?.instantiateViewController(withIdentifier: "DiaryYearCollectionViewController") as! DiaryYearCollectionViewController // 获取 DiaryYearCollectionViewController
         
         dvc.year = 2015 // 指定是 2015 年的月份
         
@@ -83,7 +83,7 @@ class HomeCollectionViewController: UICollectionViewController {
 }
 
 extension HomeCollectionViewController: UINavigationControllerDelegate {
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         let animator = DiaryAnimator()
         animator.operation = operation

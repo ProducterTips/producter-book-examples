@@ -14,7 +14,7 @@ class DiaryCollectionViewCell: UICollectionViewCell {
     var labelText: String = "" {
         didSet {
             self.textLabel.updateText(labelText)
-            self.textLabel.center = CGPointMake(itemWidth/2.0, self.textLabel.center.y + 28)
+            self.textLabel.center = CGPoint(x: itemWidth/2.0, y: self.textLabel.center.y + 28)
         }
     }
     

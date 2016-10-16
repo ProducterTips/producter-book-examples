@@ -67,7 +67,7 @@ class DiaryViewController: UIViewController,UIGestureRecognizerDelegate, UIWebVi
         
         let timeString = "\(numberToChinese(year))年 \(numberToChineseWithUnit(month))月 \(numberToChineseWithUnit(day))日"
         
-        contents = contents.replacingOccurrences(of: "#timeString#", with: timeString)
+        contents = contents.replacingOccurrences(of: "#timeString#", with: timeString) as NSString
         
         //WebView method
         

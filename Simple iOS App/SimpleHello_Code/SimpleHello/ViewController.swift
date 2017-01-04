@@ -61,16 +61,17 @@ class ViewController: UIViewController {
     
     func eatOrNot() {
         
-        let message = UIAlertView(title: "Hi",
-            message: "我只吃电，不吃饭",
-            delegate: nil, cancelButtonTitle: nil,
-            otherButtonTitles: "好的")
+        //创建一个 UIAlertController
+        let alertController = UIAlertController(title: "Hi", message: "我只吃电，不吃饭.", preferredStyle: .alert)
+        let oKAction = UIAlertAction(title: "好的", style: .default) { action in
+            // add something
+        }
+        alertController.addAction(OKAction)
         
-        //创建一个 UIAlertView 类
+        self.present(alertController, animated: true, completion: {
+            // add something
+        })
         
-        message.show()
-        
-        //显示这个 AlertView
     }
     
 }

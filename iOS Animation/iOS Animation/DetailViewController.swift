@@ -29,7 +29,7 @@ class DetailViewController: UIViewController {
             case AnimationType.sizeCode:
                 codeView.isHidden = false
 
-                UIView.animate(withDuration: 1.0, delay: 0, options: UIViewAnimationOptions(), animations: {
+                UIView.animate(withDuration: 1.0, delay: 0, options: UIView.AnimationOptions(), animations: {
                     
                     self.codeView.frame = CGRect(x: self.codeView.frame.origin.x,y: self.codeView.frame.origin.y , width: 200, height: 200)
                     self.codeView.center = self.view.center
@@ -40,7 +40,7 @@ class DetailViewController: UIViewController {
                 
                 autoLayoutView.isHidden = false
                 
-                UIView.animate(withDuration: 1.0, delay: 0, options: UIViewAnimationOptions(), animations: {
+                UIView.animate(withDuration: 1.0, delay: 0, options: UIView.AnimationOptions(), animations: {
                     
                     self.autoLayoutViewWidthConstraint.constant = 200
                     

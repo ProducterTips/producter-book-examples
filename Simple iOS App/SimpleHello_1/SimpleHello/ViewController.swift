@@ -17,25 +17,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let askButton = UIButton(type: UIButtonType.system)
+        let askButton = UIButton(type: UIButton.ButtonType.system)
         
         //创建一个 UIButton
         
         askButton.setTitle("你吃了吗",
-            for: UIControlState())
+            for: UIControl.State())
         
         //创建一个 设置默认状态下的文字，显示为 你吃了吗
         
         askButton.addTarget(self, action: #selector(ViewController.eatOrNot),
-            for: UIControlEvents.touchUpInside)
-        
-        UIView.animate(withDuration: 1.0, delay: 0, options:
-            UIViewAnimationOptions.curveEaseInOut, animations: {
-                
-                self.view.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-                // 可以修改多个属性
-                
-            }, completion: nil)
+            for: UIControl.Event.touchUpInside)
 
         
         //当点击这个 Button 的时候，执行 self （即 ViewController 这个类） 里面的 eatOrNot 方法
@@ -59,7 +51,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func eatOrNot() {
+    @objc func eatOrNot() {
         
         let message = UIAlertView(title: "Hi",
             message: "我只吃电，不吃饭",

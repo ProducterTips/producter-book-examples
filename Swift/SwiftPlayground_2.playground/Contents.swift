@@ -40,7 +40,7 @@ class NumbersParser: NumberParser {
     static let sharedInstance = NumbersParser()
     
     func numberToChinese(number: Int) -> String {
-        let numbers = String(number).characters
+        let numbers = String(number)
         var finalString = ""
         for singleNumber in numbers{
             let string = singleNumberToChinese(number: singleNumber)

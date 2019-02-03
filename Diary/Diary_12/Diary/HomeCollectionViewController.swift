@@ -14,15 +14,15 @@ class HomeCollectionViewController: UICollectionViewController {
     var fetchedResultsController : NSFetchedResultsController<Diary>!
     var yearsCount: Int = 1
     var sectionsCount: Int = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let yearLayout = DiaryLayout()
         
-        yearLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        yearLayout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         self.collectionView?.setCollectionViewLayout(yearLayout, animated: false)
-
+        
         self.navigationController!.delegate = self
         
         do {
@@ -58,17 +58,17 @@ class HomeCollectionViewController: UICollectionViewController {
             NSLog("发现错误 \(error.localizedDescription)")
         }
     }
-
-  
+    
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return yearsCount
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = "HomeYearCollectionViewCell"
         
@@ -91,7 +91,7 @@ class HomeCollectionViewController: UICollectionViewController {
         // Configure the cell
         
         return cell
-
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -107,9 +107,9 @@ class HomeCollectionViewController: UICollectionViewController {
             print("Section info \(sectionInfo.name)")
             year = Int(sectionInfo.name)!
         }
-
+        
         dvc.year = year
-
+        
         self.navigationController!.pushViewController(dvc, animated: true)
         
     }
@@ -120,7 +120,7 @@ extension HomeCollectionViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController:
         UINavigationController,
                               animationControllerFor operation:
-        UINavigationControllerOperation,
+        UINavigationController.Operation,
                               from fromVC: UIViewController,
                               to toVC: UIViewController) ->
         UIViewControllerAnimatedTransitioning? {
@@ -129,6 +129,6 @@ extension HomeCollectionViewController: UINavigationControllerDelegate {
             animator.operation = operation
             return animator
     }
-
+    
 }
 

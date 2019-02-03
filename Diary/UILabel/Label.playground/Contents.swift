@@ -8,7 +8,7 @@ let fontSize: CGFloat = 22.0
 
 func sizeHeightWithText(labelText: NSString,
     fontSize: CGFloat,
-    textAttributes: [String : Any]) -> CGRect {
+    textAttributes: [NSAttributedString.Key: AnyObject]) -> CGRect {
         
     return labelText.boundingRect(
         with: CGSize(width:fontSize, height:480),

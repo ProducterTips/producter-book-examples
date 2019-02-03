@@ -26,8 +26,6 @@
 		0A5EA7671DB30D2000B4665B /* DiaryComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EA7661DB30D2000B4665B /* DiaryComposeViewController.swift */; };
 		0A5EA7691DB3131E00B4665B /* DiaryLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EA7681DB3131E00B4665B /* DiaryLocationHelper.swift */; };
 		0A5EA76F1DB31A8500B4665B /* Diary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EA76D1DB31A8500B4665B /* Diary.xcdatamodeld */; };
-		0A5EA7761DB31BE800B4665B /* Diary+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EA7741DB31BE800B4665B /* Diary+CoreDataClass.swift */; };
-		0A5EA7771DB31BE800B4665B /* Diary+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EA7751DB31BE800B4665B /* Diary+CoreDataProperties.swift */; };
 		9F74CDB71DB3A69300DD10E3 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F74CDB61DB3A69300DD10E3 /* DiaryViewController.swift */; };
 		9F74CDB91DB3A80700DD10E3 /* DiaryTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 9F74CDB81DB3A80700DD10E3 /* DiaryTemplate.html */; };
 /* End PBXBuildFile section */
@@ -54,8 +52,6 @@
 		0A5EA7661DB30D2000B4665B /* DiaryComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryComposeViewController.swift; sourceTree = "<group>"; };
 		0A5EA7681DB3131E00B4665B /* DiaryLocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryLocationHelper.swift; sourceTree = "<group>"; };
 		0A5EA76E1DB31A8500B4665B /* Diary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Diary.xcdatamodel; sourceTree = "<group>"; };
-		0A5EA7741DB31BE800B4665B /* Diary+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Diary+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0A5EA7751DB31BE800B4665B /* Diary+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Diary+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9F74CDB61DB3A69300DD10E3 /* DiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		9F74CDB81DB3A80700DD10E3 /* DiaryTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = DiaryTemplate.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,8 +88,6 @@
 			children = (
 				9F74CDB81DB3A80700DD10E3 /* DiaryTemplate.html */,
 				9F74CDB61DB3A69300DD10E3 /* DiaryViewController.swift */,
-				0A5EA7741DB31BE800B4665B /* Diary+CoreDataClass.swift */,
-				0A5EA7751DB31BE800B4665B /* Diary+CoreDataProperties.swift */,
 				0A5EA76D1DB31A8500B4665B /* Diary.xcdatamodeld */,
 				0A5EA7681DB3131E00B4665B /* DiaryLocationHelper.swift */,
 				0A5EA7661DB30D2000B4665B /* DiaryComposeViewController.swift */,
@@ -196,7 +190,6 @@
 				0A5EA7391DB2B0F500B4665B /* ViewController.swift in Sources */,
 				0A5EA75D1DB2E5E400B4665B /* DiaryYearCollectionViewController.swift in Sources */,
 				0A5EA74F1DB2B81900B4665B /* HomeCollectionViewController.swift in Sources */,
-				0A5EA7761DB31BE800B4665B /* Diary+CoreDataClass.swift in Sources */,
 				0A5EA7691DB3131E00B4665B /* DiaryLocationHelper.swift in Sources */,
 				0A5EA7631DB2EF3E00B4665B /* DiaryMonthCollectionViewController.swift in Sources */,
 				0A5EA75F1DB2E9BF00B4665B /* DiaryCell.swift in Sources */,
@@ -207,7 +200,6 @@
 				0A5EA7511DB2B98D00B4665B /* HomeYearCollectionViewCell.swift in Sources */,
 				9F74CDB71DB3A69300DD10E3 /* DiaryViewController.swift in Sources */,
 				0A5EA76F1DB31A8500B4665B /* Diary.xcdatamodeld in Sources */,
-				0A5EA7771DB31BE800B4665B /* Diary+CoreDataProperties.swift in Sources */,
 				0A5EA7651DB2F82E00B4665B /* DiaryAnimator.swift in Sources */,
 				0A5EA7551DB2BD1700B4665B /* DiaryLayout.swift in Sources */,
 			);
@@ -336,7 +328,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kevinzhow.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -348,7 +340,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kevinzhow.Diary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

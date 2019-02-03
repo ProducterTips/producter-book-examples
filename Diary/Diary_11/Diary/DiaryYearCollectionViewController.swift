@@ -18,10 +18,10 @@ class DiaryYearCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let layout = DiaryLayout()
         
-        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         self.collectionView?.setCollectionViewLayout(layout, animated: false)
         
         do {
@@ -59,18 +59,18 @@ class DiaryYearCollectionViewController: UICollectionViewController {
         } catch let error as NSError {
             NSLog("发现错误 \(error.localizedDescription)")
         }
-
+        
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return monthCount
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = "DiaryCell"
         
@@ -93,7 +93,7 @@ class DiaryYearCollectionViewController: UICollectionViewController {
         // Configure the cell
         
         return cell
-
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

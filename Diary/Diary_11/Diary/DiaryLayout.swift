@@ -27,7 +27,7 @@ class DiaryLayout: UICollectionViewFlowLayout {
         self.sectionInset = UIEdgeInsets(top: (screenSize.height/2.0) - (itemHeight/2.0), left: edgeInsets, bottom: (screenSize.height/2.0) - (itemHeight/2.0), right: 0)
         
         // 滚动方向
-        scrollDirection = UICollectionViewScrollDirection.horizontal
+        scrollDirection = UICollectionView.ScrollDirection.horizontal
     }
     
     // 每次Cell的位置发生变化的时候都会执行

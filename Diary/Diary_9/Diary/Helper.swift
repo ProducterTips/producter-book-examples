@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension Diary {
+    
+    func updateTimeWithDate(_ date: Date){
+        self.created_at = date
+        self.year = Int32(Calendar.current.component(Calendar.Component.year, from: date))
+        self.month = Int32(Calendar.current.component(Calendar.Component.month, from: date))
+    }
+    
+}
+
 func diaryButtonWith(text: String,
                      fontSize: CGFloat,
                      width: CGFloat,
@@ -15,68 +25,33 @@ func diaryButtonWith(text: String,
                      highlightedImageName: String) -> UIButton {
     
     // 创建自定义按钮
-    let button = UIButton(type: UIButtonType.custom)
+    let button = UIButton(type: UIButton.ButtonType.custom)
     
     // 设定按钮的大小
     button.frame = CGRect(x: 0, y: 0, width: width, height: width)
     
-    let font = UIFont(name: "Wyue-GutiFangsong-NC", size: fontSize) as UIFont!
+    let font = UIFont(name: "Wyue-GutiFangsong-NC", size: fontSize)
     
-    let textAttributes: [String : AnyObject] = [
-        NSFontAttributeName: font!,
-        NSForegroundColorAttributeName: UIColor.white]
+    let textAttributes: [NSAttributedString.Key: AnyObject] = [
+        NSAttributedString.Key.font: font!,
+        NSAttributedString.Key.foregroundColor: UIColor.white]
     
     // 设置按钮的字体
     let attributedText = NSAttributedString(string: text, attributes: textAttributes)
-    button.setAttributedTitle(attributedText, for: UIControlState.normal)
+    button.setAttributedTitle(attributedText, for: UIControl.State.normal)
     
     // 设置默认按钮的样式
     button.setBackgroundImage(UIImage(
         named: normalImageName),
-                              for: UIControlState.normal)
+                              for: UIControl.State.normal)
     
     // 设置按钮被按下时的样式
     button.setBackgroundImage(UIImage(
         named: highlightedImageName),
-                              for: UIControlState.highlighted)
+                              for: UIControl.State.highlighted)
     
     return button
 }
-
-func numberToChinese(_ number:Int) -> String {
-    let numbers = Array(String(number).characters)
-    var finalString = ""
-    for singleNumber in numbers {
-        let string = singleNumberToChinese(singleNumber)
-        finalString = "\(finalString)\(string)"
-    }
-    return finalString
-}
-
-func numberToChineseWithUnit(_ number:Int) -> String {
-    let numbers = Array(String(number).characters)
-    var units = unitParser(numbers.count)
-    var finalString = ""
-    
-    for (index, singleNumber) in numbers.enumerated() {
-        let string = singleNumberToChinese(singleNumber)
-        if (!(string == "零" && (index+1) == numbers.count)){
-            finalString = "\(finalString)\(string)\(units[index])"
-        }
-    }
-    
-    return finalString
-}
-
-func unitParser(_ unit:Int) -> [String] {
-    
-    var units = Array(["万","千","百","十",""].reversed())
-    let parsedUnits = units[0..<(unit)].reversed()
-    let slicedUnits: ArraySlice<String> = ArraySlice(parsedUnits)
-    let final: [String] = Array(slicedUnits)
-    return final
-}
-
 
 func singleNumberToChinese(_ number:Character) -> String {
     switch number {
@@ -103,4 +78,39 @@ func singleNumberToChinese(_ number:Character) -> String {
     default:
         return ""
     }
+}
+
+
+func numberToChinese(_ number:Int) -> String {
+    let numbers = String(number)
+    var finalString = ""
+    for singleNumber in numbers {
+        let string = singleNumberToChinese(singleNumber)
+        finalString = "\(finalString)\(string)"
+    }
+    return finalString
+}
+
+func numberToChineseWithUnit(_ number:Int) -> String {
+    let numbers = String(number)
+    var units = unitParser(numbers.count)
+    var finalString = ""
+    
+    for (index, singleNumber) in numbers.enumerated() {
+        let string = singleNumberToChinese(singleNumber)
+        if (!(string == "零" && (index+1) == numbers.count)){
+            finalString = "\(finalString)\(string)\(units[index])"
+        }
+    }
+    
+    return finalString
+}
+
+func unitParser(_ unit:Int) -> [String] {
+    
+    var units = Array(["万","千","百","十",""].reversed())
+    let parsedUnits = units[0..<(unit)].reversed()
+    let slicedUnits: ArraySlice<String> = ArraySlice(parsedUnits)
+    let final: [String] = Array(slicedUnits)
+    return final
 }

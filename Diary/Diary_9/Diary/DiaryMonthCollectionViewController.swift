@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-let DiaryRed = UIColor.init(colorLiteralRed: 192.0/255.0, green: 23/255.0, blue: 48.0/255.0, alpha: 1)
+let DiaryRed = UIColor(red: 192.0/255.0, green: 23/255.0, blue: 48.0/255.0, alpha: 1)
 
 class DiaryMonthCollectionViewController: UICollectionViewController {
     var year: Int!
@@ -24,7 +24,7 @@ class DiaryMonthCollectionViewController: UICollectionViewController {
         
         let layout = DiaryLayout()
         
-        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         self.collectionView?.setCollectionViewLayout(layout, animated: false)
         
         yearLabel = DiaryLabel(
@@ -62,7 +62,7 @@ class DiaryMonthCollectionViewController: UICollectionViewController {
                                        y: 38 + yearLabel.frame.size.height + 26.0/2.0)
         
         composeButton.addTarget(self, action: #selector(newCompose),
-                                for: UIControlEvents.touchUpInside)
+                                for: UIControl.Event.touchUpInside)
         
         self.view.addSubview(composeButton)
         
@@ -97,7 +97,7 @@ class DiaryMonthCollectionViewController: UICollectionViewController {
     
     }
     
-    func newCompose() {
+    @objc func newCompose() {
         
         let identifier = "DiaryComposeViewController"
         

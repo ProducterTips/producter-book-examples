@@ -53,8 +53,6 @@ func diaryButtonWith(text: String,
     return button
 }
 
-
-
 func numberToChinese(_ number:Int) -> String {
     let numbers = String(number)
     var finalString = ""

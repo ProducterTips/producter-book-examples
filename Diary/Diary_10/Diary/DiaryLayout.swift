@@ -24,7 +24,7 @@ class DiaryLayout: UICollectionViewFlowLayout {
         self.sectionInset = UIEdgeInsets(top: (screenSize.height/2.0) - (itemHeight/2.0), left: (screenSize.width/2.0) - (itemWidth/2.0), bottom: (screenSize.height/2.0) - (itemHeight/2.0), right: (screenSize.height/2.0) - (itemHeight/2.0))
         
         // 滚动方向
-        scrollDirection = UICollectionViewScrollDirection.horizontal
+        scrollDirection = UICollectionView.ScrollDirection.horizontal
     }
 }
 

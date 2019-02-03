@@ -48,13 +48,13 @@ class DiaryViewController: UIViewController {
         }
         
         // 生成年的整数类型
-        let year = (Calendar.current as NSCalendar).component(NSCalendar.Unit.year, from: diary.created_at as! Date)
+        let year = (Calendar.current as NSCalendar).component(NSCalendar.Unit.year, from: diary.created_at!)
         
         // 生成月的整数类型
-        let month = (Calendar.current as NSCalendar).component(NSCalendar.Unit.month, from: diary.created_at as! Date)
+        let month = (Calendar.current as NSCalendar).component(NSCalendar.Unit.month, from: diary.created_at!)
         
         // 生成日的整数类型
-        let day = (Calendar.current as NSCalendar).component(NSCalendar.Unit.day, from: diary.created_at as! Date)
+        let day = (Calendar.current as NSCalendar).component(NSCalendar.Unit.day, from: diary.created_at!)
         
         let timeString = "\(numberToChinese(year))年 \(numberToChineseWithUnit(month))月 \(numberToChineseWithUnit(day))日"
         
@@ -70,7 +70,7 @@ class DiaryViewController: UIViewController {
         var contentMargin:CGFloat = 10
         
         if let titleStr = diary?.title {
-            let parsedTime = "\(numberToChineseWithUnit((Calendar.current as NSCalendar).component(NSCalendar.Unit.day, from: diary.created_at as! Date))) 日"
+            let parsedTime = "\(numberToChineseWithUnit((Calendar.current as NSCalendar).component(NSCalendar.Unit.day, from: diary.created_at!))) 日"
             if titleStr != parsedTime {
                 title = titleStr
                 contentWidthOffset = 205
@@ -116,7 +116,7 @@ class DiaryViewController: UIViewController {
         
         saveButton.center = CGPoint(x: buttonsView.frame.width/2.0, y: buttonsView.frame.height/2.0)
         
-        saveButton.addTarget(self, action: #selector(saveToRoll), for: UIControlEvents.touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveToRoll), for: UIControl.Event.touchUpInside)
         
         buttonsView.addSubview(saveButton)
         
@@ -125,7 +125,7 @@ class DiaryViewController: UIViewController {
         
         editButton.center = CGPoint(x: saveButton.center.x - 56.0, y: saveButton.center.y)
         
-        editButton.addTarget(self, action: #selector(editDiary), for: UIControlEvents.touchUpInside)
+        editButton.addTarget(self, action: #selector(editDiary), for: UIControl.Event.touchUpInside)
         
         buttonsView.addSubview(editButton)
         
@@ -133,7 +133,7 @@ class DiaryViewController: UIViewController {
         
         deleteButton.center = CGPoint(x: saveButton.center.x + 56.0, y: saveButton.center.y)
         
-        deleteButton.addTarget(self, action: #selector(deleteThisDiary), for: UIControlEvents.touchUpInside)
+        deleteButton.addTarget(self, action: #selector(deleteThisDiary), for: UIControl.Event.touchUpInside)
         
         buttonsView.addSubview(deleteButton)
         
@@ -148,10 +148,10 @@ class DiaryViewController: UIViewController {
         
     }
     
-    func showButtons() {
+    @objc func showButtons() {
         
         if(buttonsView.alpha == 0.0) {
-            UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations:
+            UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions(), animations:
                 {
                     self.buttonsView.center = CGPoint(x: self.buttonsView.center.x, y: screenSize.height - self.buttonsView.frame.size.height/2.0)
                     self.buttonsView.alpha = 1.0
@@ -160,7 +160,7 @@ class DiaryViewController: UIViewController {
             
         }else{
             
-            UIView.animate(withDuration: 0.1, delay: 0, options: UIViewAnimationOptions(), animations:
+            UIView.animate(withDuration: 0.1, delay: 0, options: UIView.AnimationOptions(), animations:
                 {
                     self.buttonsView.center = CGPoint(x: self.buttonsView.center.x, y: screenSize.height + self.buttonsView.frame.size.height/2.0)
                     self.buttonsView.alpha = 0.0
@@ -169,7 +169,7 @@ class DiaryViewController: UIViewController {
         }
     }
     
-    func editDiary() {
+    @objc func editDiary() {
         let composeViewController = self.storyboard?.instantiateViewController(withIdentifier: "DiaryComposeViewController") as! DiaryComposeViewController
         
         if let diary = diary {
@@ -180,7 +180,7 @@ class DiaryViewController: UIViewController {
         self.present(composeViewController, animated: true, completion: nil)
     }
     
-    func saveToRoll() {
+    @objc func saveToRoll() {
         
         let offset = self.webview.scrollView.contentOffset.x
         
@@ -205,7 +205,7 @@ class DiaryViewController: UIViewController {
     }
     
     
-    func deleteThisDiary() {
+    @objc func deleteThisDiary() {
         managedContext.delete(diary)
         do {
             try managedContext.save()

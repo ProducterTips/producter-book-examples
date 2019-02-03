@@ -16,7 +16,7 @@ extension DetailViewController {
         imageView.clipsToBounds = true
         
         // ScaleAspectFill避免图片在缩放的时候变形
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
         
         view.window!.addSubview(imageView)
         imageView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: 260)
@@ -25,7 +25,7 @@ extension DetailViewController {
     
     func startKeyFrameAnimation() {
         // 定义一个总时间为2秒的动画
-        UIView.animateKeyframes(withDuration: 2, delay: 0, options: UIViewKeyframeAnimationOptions.calculationModeCubic, animations: {
+        UIView.animateKeyframes(withDuration: 2, delay: 0, options: UIView.KeyframeAnimationOptions.calculationModeCubic, animations: {
             
             // 在动画进度为0的时候开始，耗时0.5秒
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {

@@ -13,7 +13,7 @@ extension DetailViewController {
     func maskAnimation() {
         imageView.image = UIImage(named: "leaf")
         imageView.clipsToBounds = true
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         view.window!.addSubview(imageView)
         imageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.size
         .height)
@@ -52,7 +52,7 @@ extension DetailViewController {
         transformAnim.isRemovedOnCompletion = false
         
         // fillMode定义了动画完成时，对于Layer的属性修改是否保留
-        transformAnim.fillMode = kCAFillModeForwards
+        transformAnim.fillMode = .forwards
         
         // 我们这里将removedOnCompletion定义为false，fillMode
         // 定义为kCAFillModeForwards则可以使得动画结束时，保留
@@ -71,7 +71,7 @@ extension DetailViewController {
         positionAnim.keyTimes       = [0, 0.249, 0.618, 1]
         positionAnim.duration       = 1
         positionAnim.isRemovedOnCompletion = false
-        positionAnim.fillMode = kCAFillModeForwards
+        positionAnim.fillMode = .forwards
         self.maskView.layer.add(positionAnim, forKey: "position")
         
         // 定义修改圆角的动画
@@ -81,7 +81,7 @@ extension DetailViewController {
         radiusAnim.keyTimes       = [0, 0.349, 0.618, 1]
         radiusAnim.duration       = 1
         radiusAnim.isRemovedOnCompletion = false
-        radiusAnim.fillMode = kCAFillModeForwards
+        radiusAnim.fillMode = .forwards
         self.maskView.layer.add(radiusAnim, forKey: "cornerRadius")
 
         

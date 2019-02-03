@@ -30,26 +30,26 @@ extension DetailViewController {
         jellyShape.frame = view.bounds
         jellyShape.path = polygonPath.cgPath
         jellyShape.lineWidth = 3.0
-        jellyShape.lineCap = kCALineCapRound
-        jellyShape.lineJoin = kCALineJoinRound
+        jellyShape.lineCap = .round
+        jellyShape.lineJoin = .round
         jellyShape.strokeColor = UIColor.white.cgColor
         jellyShape.fillColor = color.cgColor
         view.layer.addSublayer(jellyShape)
     }
     
-    func updatePathPan(_ gesture: UIPanGestureRecognizer) {
+    @objc func updatePathPan(_ gesture: UIPanGestureRecognizer) {
         
-        if gesture.state == UIGestureRecognizerState.ended {
+        if gesture.state == .ended {
             
             let displayLink = CADisplayLink(target: self, selector: #selector(DetailViewController.syncPath))
             
-            displayLink.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+            displayLink.add(to: RunLoop.current, forMode: .default)
             
             dummyView = UIView(frame: CGRect(x: currentControlPoint, y: view.frame.height/2.0, width: 10, height: 10))
             
             view.addSubview(dummyView!)
             
-            UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 50, options: UIViewAnimationOptions(), animations: { () -> Void in
+            UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 50, options: UIView.AnimationOptions(), animations: { () -> Void in
                 
                 self.dummyView!.center = CGPoint(x: 0, y: self.view.frame.height/2.0)
                 
@@ -60,7 +60,7 @@ extension DetailViewController {
             
             
             
-        } else if gesture.state == UIGestureRecognizerState.changed {
+        } else if gesture.state == .changed {
             let translationPoint = gesture.translation(in: view)
             
             currentControlPoint = currentControlPoint + translationPoint.x
@@ -77,7 +77,7 @@ extension DetailViewController {
         
     }
     
-    func syncPath() {
+    @objc func syncPath() {
         
         if let dummyView = dummyView, let currentLayer = dummyView.layer.presentation() {
             //// 绘制多边形

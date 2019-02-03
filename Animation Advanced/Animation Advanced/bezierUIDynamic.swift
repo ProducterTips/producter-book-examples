@@ -15,13 +15,13 @@ extension DetailViewController {
     */
     
     
-    func updateUIDynamicPathPan(_ gesture: UIPanGestureRecognizer) {
+    @objc func updateUIDynamicPathPan(_ gesture: UIPanGestureRecognizer) {
         
-        if gesture.state == UIGestureRecognizerState.ended {
+        if gesture.state == .ended {
             
             bezierUIDynamicSetup()
             
-        } else if gesture.state == UIGestureRecognizerState.changed {
+        } else if gesture.state == .changed {
             
             let translationPoint = gesture.translation(in: view)
             
@@ -35,7 +35,7 @@ extension DetailViewController {
             gesture.setTranslation(CGPoint.zero, in: view)
             
             jellyShape.path = polygonPath.cgPath
-        } else if gesture.state == UIGestureRecognizerState.began {
+        } else if gesture.state == .began {
             
             displayLinkUIDynamic?.invalidate()
             currentControlPoint = 0
@@ -62,8 +62,8 @@ extension DetailViewController {
         jellyShape.frame = view.bounds
         jellyShape.path = polygonPath.cgPath
         jellyShape.lineWidth = 3.0
-        jellyShape.lineCap = kCALineCapRound
-        jellyShape.lineJoin = kCALineJoinRound
+        jellyShape.lineCap = CAShapeLayerLineCap.round
+        jellyShape.lineJoin = CAShapeLayerLineJoin.round
         jellyShape.strokeColor = UIColor.white.cgColor
         jellyShape.fillColor = color.cgColor
         view.layer.addSublayer(jellyShape)
@@ -99,10 +99,10 @@ extension DetailViewController {
         
         displayLinkUIDynamic = CADisplayLink(target: self, selector: #selector(DetailViewController.syncUIDynamicPath))
         
-        displayLinkUIDynamic!.add(to: RunLoop.current, forMode: RunLoopMode.defaultRunLoopMode)
+        displayLinkUIDynamic!.add(to: .current, forMode: .default)
     }
     
-    func syncUIDynamicPath() {
+    @objc func syncUIDynamicPath() {
         
         if let dummyView = box, let currentLayer = dummyView.layer.presentation() {
             //// Polygon Drawing

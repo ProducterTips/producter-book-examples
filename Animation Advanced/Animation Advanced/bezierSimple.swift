@@ -49,8 +49,8 @@ extension DetailViewController {
         shape.frame = view.bounds
         shape.path = polygonPath.cgPath
         shape.lineWidth = 3.0
-        shape.lineCap = kCALineCapRound
-        shape.lineJoin = kCALineJoinRound
+        shape.lineCap = .round
+        shape.lineJoin = .round
         shape.strokeColor = UIColor.white.cgColor
         shape.fillColor = color.cgColor
         view.layer.addSublayer(shape)
@@ -60,7 +60,7 @@ extension DetailViewController {
         pathAnimation.toValue = starPath.cgPath
         pathAnimation.duration = 1.0
         pathAnimation.autoreverses = false
-        pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        pathAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         
         shape.add(pathAnimation, forKey: "animationKey")
         

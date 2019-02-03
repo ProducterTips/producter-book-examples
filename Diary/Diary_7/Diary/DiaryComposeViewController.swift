@@ -13,9 +13,9 @@ let titleTextViewHeight:CGFloat = 30.0
 let contentMargin:CGFloat = 20.0
 
 var defaultFont = "Wyue-GutiFangsong-NC"
-let DiaryFont = UIFont(name: defaultFont, size: 18) as UIFont!
-let DiaryLocationFont = UIFont(name: defaultFont, size: 16) as UIFont!
-let DiaryTitleFont = UIFont(name: defaultFont, size: 18) as UIFont!
+let DiaryFont = UIFont(name: defaultFont, size: 18)!
+let DiaryLocationFont = UIFont(name: defaultFont, size: 16)!
+let DiaryTitleFont = UIFont(name: defaultFont, size: 18)!
 
 class DiaryComposeViewController: UIViewController {
     var composeView:UITextView!
@@ -33,7 +33,7 @@ class DiaryComposeViewController: UIViewController {
         composeView.font = DiaryFont
         composeView.isEditable = true
         composeView.isUserInteractionEnabled = true
-        composeView.textContainerInset = UIEdgeInsetsMake(contentMargin, contentMargin, contentMargin, contentMargin)
+        composeView.textContainerInset = UIEdgeInsets(top: contentMargin, left: contentMargin, bottom: contentMargin, right: contentMargin)
         composeView.text = "没道理，是一枚太平洋的暖湿空气，飘"
         
         // 创建地址输入框
@@ -69,19 +69,19 @@ class DiaryComposeViewController: UIViewController {
         
         self.finishButton.center = CGPoint(x: self.view.frame.width - self.finishButton.frame.size.height/2.0 - 10, y: self.view.frame.height  - self.finishButton.frame.size.height/2.0 - 10)
         
-        self.finishButton.addTarget(self, action: #selector(finishCompose(_:)), for: UIControlEvents.touchUpInside)
+        self.finishButton.addTarget(self, action: #selector(finishCompose(_:)), for: UIControl.Event.touchUpInside)
         
         self.locationTextView.center = CGPoint(x: self.locationTextView.frame.size.width/2.0 + 20.0, y: self.finishButton.center.y)
         
         // 监听键盘事件
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIWindow.keyboardDidShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateAddress(_:)), name: NSNotification.Name(rawValue: "DiaryLocationUpdated"), object: nil)
 
     }
     
-    func finishCompose(_ button: UIButton) {
+    @objc func finishCompose(_ button: UIButton) {
         
         // 取消输入框的编辑状态，收起键盘
         self.composeView.endEditing(true)
@@ -112,7 +112,7 @@ class DiaryComposeViewController: UIViewController {
                 try managedContext.save()
             } catch let error1 as NSError {
                 error = error1
-                print("保存错误 \(error), \(error?.userInfo)")
+                print("保存错误 \(error)")
             }
             
         }
@@ -120,7 +120,7 @@ class DiaryComposeViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func updateAddress(_ notification: Notification) {
+    @objc func updateAddress(_ notification: Notification) {
         
         if let address = notification.object as? String {
             
@@ -131,9 +131,9 @@ class DiaryComposeViewController: UIViewController {
         
     }
     
-    func keyboardDidShow(_ notification: Notification) {
+    @objc func keyboardDidShow(_ notification: Notification) {
         // 取出键盘的高度
-        if let rectValue = (notification as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let rectValue = (notification as NSNotification).userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             keyboardSize = rectValue.cgRectValue.size
             
             //更新完成按钮和地址输入框的位置
@@ -145,7 +145,7 @@ class DiaryComposeViewController: UIViewController {
         
         let newKeyboardHeight = keyboardHeight
         
-        UIView.animate(withDuration: 1.0, delay: 0, options: UIViewAnimationOptions(), animations:
+        UIView.animate(withDuration: 1.0, delay: 0, options: UIView.AnimationOptions(), animations:
             {
                 if (self.locationTextView.text == nil) {
                     self.composeView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - newKeyboardHeight)

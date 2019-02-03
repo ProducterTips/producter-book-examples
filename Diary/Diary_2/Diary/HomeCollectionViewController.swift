@@ -17,7 +17,7 @@ class HomeCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
         let yearLayout = DiaryLayout()
         
-        yearLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        yearLayout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         self.collectionView?.setCollectionViewLayout(yearLayout, animated: false)
 
         // Do any additional setup after loading the view.

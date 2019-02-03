@@ -17,7 +17,7 @@ class HomeCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
         let yearLayout = DiaryLayout()
         
-        yearLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        yearLayout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         self.collectionView?.setCollectionViewLayout(yearLayout, animated: false)
 
         self.navigationController!.delegate = self
@@ -83,7 +83,7 @@ extension HomeCollectionViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController:
         UINavigationController,
                               animationControllerFor operation:
-        UINavigationControllerOperation,
+        UINavigationController.Operation,
                               from fromVC: UIViewController,
                               to toVC: UIViewController) ->
         UIViewControllerAnimatedTransitioning? {

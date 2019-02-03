@@ -11,9 +11,10 @@ let titleTextViewHeight:CGFloat = 30.0
 let contentMargin:CGFloat = 20.0
 
 var defaultFont = "Wyue-GutiFangsong-NC"
-let DiaryFont = UIFont(name: defaultFont, size: 18) as UIFont!
-let DiaryLocationFont = UIFont(name: defaultFont, size: 16) as UIFont!
-let DiaryTitleFont = UIFont(name: defaultFont, size: 18) as UIFont!
+
+let DiaryFont = UIFont(name: defaultFont, size: 18)!
+let DiaryLocationFont = UIFont(name: defaultFont, size: 16)!
+let DiaryTitleFont = UIFont(name: defaultFont, size: 18)!
 
 class DiaryComposeViewController: UIViewController {
     var composeView:UITextView!
@@ -31,7 +32,7 @@ class DiaryComposeViewController: UIViewController {
         composeView.font = DiaryFont
         composeView.isEditable = true
         composeView.isUserInteractionEnabled = true
-        composeView.textContainerInset = UIEdgeInsetsMake(contentMargin, contentMargin, contentMargin, contentMargin)
+        composeView.textContainerInset = UIEdgeInsets(top: contentMargin, left: contentMargin, bottom: contentMargin, right: contentMargin)
         composeView.text = "没道理，是一枚太平洋的暖湿空气，飘"
         
         // 创建地址输入框
@@ -71,13 +72,13 @@ class DiaryComposeViewController: UIViewController {
         
         // 监听键盘事件
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow(_:)), name: UIWindow.keyboardDidShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateAddress(_:)), name: NSNotification.Name(rawValue: "DiaryLocationUpdated"), object: nil)
 
     }
     
-    func updateAddress(_ notification: Notification) {
+    @objc func updateAddress(_ notification: Notification) {
         
         if let address = notification.object as? String {
             
@@ -88,9 +89,9 @@ class DiaryComposeViewController: UIViewController {
         
     }
     
-    func keyboardDidShow(_ notification: Notification) {
+    @objc func keyboardDidShow(_ notification: Notification) {
         // 取出键盘的高度
-        if let rectValue = (notification as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let rectValue = (notification as NSNotification).userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             keyboardSize = rectValue.cgRectValue.size
             
             //更新完成按钮和地址输入框的位置
@@ -102,7 +103,7 @@ class DiaryComposeViewController: UIViewController {
         
         let newKeyboardHeight = keyboardHeight
         
-        UIView.animate(withDuration: 1.0, delay: 0, options: UIViewAnimationOptions(), animations:
+        UIView.animate(withDuration: 1.0, delay: 0, options: UIView.AnimationOptions(), animations:
             {
                 if (self.locationTextView.text == nil) {
                     self.composeView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - newKeyboardHeight)

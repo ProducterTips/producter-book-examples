@@ -10,7 +10,7 @@ import UIKit
 
 class DiaryAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
-    var operation:UINavigationControllerOperation!
+    var operation: UINavigationController.Operation!
     
     // 转场时长
     
@@ -42,7 +42,7 @@ class DiaryAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         toView?.alpha = 0.0
         
         // UINavigationControllerOperation.Pop用来判断是转入还是转出
-        if operation ==  UINavigationControllerOperation.pop {
+        if operation ==  UINavigationController.Operation.pop {
             // 如果是返回旧场景，那么设置要转入的场景初始缩放为原始大小
             toView?.transform = CGAffineTransform(scaleX: 1.0,y: 1.0)
         }else{
@@ -56,10 +56,10 @@ class DiaryAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(
             withDuration: transitionDuration(using: transitionContext),
             delay: 0,
-            options: UIViewAnimationOptions.curveEaseInOut,
+            options: UIView.AnimationOptions.curveEaseInOut,
             animations:
             {
-                if self.operation ==  UINavigationControllerOperation.pop {
+                if self.operation ==  UINavigationController.Operation.pop {
                     // 放大要转出的场景
                     fromView?.transform = CGAffineTransform(scaleX: 3.3,y: 3.3)
                 } else {

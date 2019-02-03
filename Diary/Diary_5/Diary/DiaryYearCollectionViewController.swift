@@ -16,7 +16,7 @@ class DiaryYearCollectionViewController: UICollectionViewController {
 
         let layout = DiaryLayout()
         
-        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         self.collectionView?.setCollectionViewLayout(layout, animated: false)
 
     }

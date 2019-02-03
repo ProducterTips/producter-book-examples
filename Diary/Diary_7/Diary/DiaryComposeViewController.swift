@@ -107,12 +107,10 @@ class DiaryComposeViewController: UIViewController {
             
             newdiary.updateTimeWithDate(Date())
             
-            var error: NSError?
             do {
                 try managedContext.save()
-            } catch let error1 as NSError {
-                error = error1
-                print("保存错误 \(error)")
+            } catch let error as NSError {
+                print("保存错误 \(error.description)")
             }
             
         }

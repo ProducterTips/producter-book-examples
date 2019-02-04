@@ -16,7 +16,7 @@ extension DetailViewController {
         imageView.clipsToBounds = true
         
         // ScaleAspectFill避免图片在缩放的时候变形
-        imageView.contentMode = UIView.ContentMode.scaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         
         view.window!.addSubview(imageView)
         imageView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: 260)
